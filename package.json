@@ -1,17 +1,21 @@
 {
-  "name": "mutorjs-docs",
-  "version": "1.0.0",
-  "description": "The official documentation website for Mutor.js",
-  "main": "src/index.js",
-  "author": "Victor Onah",
-  "license": "MIT",
-  "dependencies": {
-    "@tailwindcss/cli": "^4.3.0",
-    "express": "^5.2.1",
-    "mutorjs": "^1.5.5",
-    "tailwindcss": "^4.3.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^2.4.16"
-  }
+	"author": "Victor Onah",
+	"dependencies": {
+		"@tailwindcss/cli": "^4.3.0",
+		"express": "^5.2.1",
+		"mutorjs": "^1.5.5",
+		"tailwindcss": "^4.3.0"
+	},
+	"description": "The official documentation website for Mutor.js",
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.16"
+	},
+	"license": "MIT",
+	"main": "src/index.js",
+	"name": "mutorjs-docs",
+	"scripts": {
+		"dev": "node ./src/index.js --watch",
+		"start": "node ./src/index.js"
+	},
+	"version": "1.0.0"
 }
