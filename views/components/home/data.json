@@ -35,7 +35,7 @@
 	],
 	"seo": {
 		"description": "An open-source, zero-runtime-dependency template engine compiled for native execution performance and compile-time sandbox security validation.",
-		"image": "https://mutorjs.sellazzo.com/images/banner.png",
+		"image": "/images/banner.png",
 		"title": "Mutor.js — High-Performance AST-Based Template Engine",
 		"url": "https://mutor.js.org/docs"
 	}
