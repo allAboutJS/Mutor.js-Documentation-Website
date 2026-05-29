@@ -6,6 +6,7 @@ const engine = new Mutor({
 	cache: { active: process.env.NODE_ENV === "production" },
 });
 const server = express();
+const port = process.env.PORT || 3000;
 
 server.use(express.static("public"));
 
@@ -23,6 +24,6 @@ server.get("/", (_, res) => {
 	res.render("index", { title: "Mutor.js Docs" });
 });
 
-server.listen(3000, () => {
-	console.log("Server is running on port 3000");
+server.listen(port, () => {
+	console.log(`Server is running on port ${port}`);
 });
