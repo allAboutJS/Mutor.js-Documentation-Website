@@ -1,0 +1,42 @@
+{
+	"benchmarks": [
+		{
+			"label": "Parse/Compile Overhead",
+			"mutor": "One-time cost",
+			"others": "Every request"
+		},
+		{
+			"label": "Execution Speed",
+			"mutor": "High (Compiled Fn)",
+			"others": "Medium (Interpreted)"
+		},
+		{
+			"label": "Security Model",
+			"mutor": "Runtime & Compile-time",
+			"others": "Optional Filters"
+		}
+	],
+	"features": [
+		{
+			"description": "Transforms templates into native JavaScript functions. No runtime parsing or AST traversal — just a function call.",
+			"icon": "star",
+			"title": "Compiler-Oriented Pipeline"
+		},
+		{
+			"description": "Security is woven into the compilation pipeline. Property access is strictly validated, and the sandbox prevents global scope leakage.",
+			"icon": "shield",
+			"title": "Security-First Architecture"
+		},
+		{
+			"description": "Self-contained TypeScript core with zero dependencies, minimizing your attack surface and improving overall stability.",
+			"icon": "circle",
+			"title": "Zero Runtime Dependencies"
+		}
+	],
+	"seo": {
+		"description": "An open-source, zero-runtime-dependency template engine compiled for native execution performance and compile-time sandbox security validation.",
+		"image": "https://mutorjs.sellazzo.com/images/banner.png",
+		"title": "Mutor.js — High-Performance AST-Based Template Engine",
+		"url": "https://mutor.js.org/docs"
+	}
+}

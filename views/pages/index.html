@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{ Mutor::include("../components/shared/css-link.html") }}
+  {{ Mutor::include("../components/shared/seo.html", JSON::parse(Mutor::include("../components/home/data.json"))) }}
+  <title>{{ title }}</title>
+</head>
+
+<body class="bg-zinc-950 text-zinc-100 antialiased">
+  {{ Mutor::include("../components/shared/header.html", Mutor::$$context) }}
+
+  <main>
+    {{ Mutor::include("../components/home/hero.html") }}
+    {{ Mutor::include(
+        "../components/home/features.html",
+        JSON::parse(Mutor::include("../components/home/data.json"))
+    ) }}
+    {{ Mutor::include(
+        "../components/home/benchmarks.html",
+        JSON::parse(Mutor::include("../components/home/data.json"))
+    ) }}
+    {{ Mutor::include("../components/home/implementation.html") }}
+    {{ Mutor::include("../components/home/security-architecture.html") }}
+    {{ Mutor::include("../components/home/cache-system.html") }}
+    {{ Mutor::include("../components/home/namespace.html") }}
+    {{ Mutor::include("../components/home/conditionals.html") }}
+    {{ Mutor::include("../components/home/loops.html") }}
+    {{ Mutor::include("../components/home/resources.html") }}
+  </main>
+
+  {{ Mutor::include("../components/shared/footer.html") }}
+</body>
+</html>

@@ -1,0 +1,46 @@
+<section class="py-24 border-t border-zinc-800/60">
+  <div class="container mx-auto px-6">
+    <div class="flex items-center gap-3 mb-5">
+      <span class="block w-6 h-px bg-blue-500"></span>
+      <span class="text-blue-500 text-xs font-semibold uppercase tracking-widest">Performance</span>
+    </div>
+
+    <h2 class="text-4xl lg:text-5xl font-bold tracking-[-0.03em] text-white mb-12">Fine-tuned throughput.</h2>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+      <div class="bg-zinc-900 border border-zinc-800 p-8 rounded-xl overflow-hidden">
+        <h3 class="text-white font-semibold text-sm mb-1 tracking-[-0.02em]">Memory-Aware Caching</h3>
+        <p class="text-zinc-500 text-xs leading-relaxed mb-6">
+          Mutor.js allows explicit cache sizing. By configuring <code>maxSize</code>, you prevent memory exhaustion in high-traffic environments while maintaining near-native execution speeds for hot components.
+        </p>
+        <div class="border-t border-zinc-800/60 bg-zinc-950 px-6 py-5 overflow-x-auto max-w-full rounded-lg">
+          <pre class="text-xs font-mono leading-7"><code><span class="text-violet-400">const</span> engine = <span class="text-violet-400">new</span> <span class="text-blue-400">Mutor</span>({
+  cache: { maxSize: <span class="text-zinc-100">1024</span> * <span class="text-zinc-100">1024</span> * <span class="text-zinc-100">50</span> <span class="text-zinc-500">/* 50mb */</span> }
+});</code></pre>
+        </div>
+      </div>
+
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="px-6 pt-6 pb-4">
+          <span class="text-sm font-mono font-semibold text-blue-500 tracking-widest uppercase block mb-2">02</span>
+          <h3 class="text-white font-semibold text-sm mb-1 tracking-[-0.02em]">Execution Environments</h3>
+          <p class="text-zinc-500 text-xs">Separate runtime targets for browser components and server rendering.</p>
+        </div>
+        <div class="border-t border-zinc-800 bg-zinc-950 px-6 py-5 overflow-x-auto">
+          <pre class="text-xs font-mono leading-7"><code>
+<span class="text-zinc-500">// Register the component (compile and cache)</span>
+engine.<span class="text-blue-400">registerComponent</span>(<span class="text-rose-400">"name"</span>, templateString);
+<span class="text-zinc-500">// No more compilation (direct execution)</span>
+engine.<span class="text-blue-400">renderComponent</span>(<span class="text-rose-400">"name"</span>, { key: <span class="text-rose-400">'home-page'</span> });
+
+<span class="text-zinc-500">// Server</span>
+<span class="text-zinc-500">// Cache misses, first call compiles and caches</span>
+engine.<span class="text-blue-400">renderFile</span>(templateString, { key: <span class="text-rose-400">'home-page'</span> });
+<span class="text-zinc-500">// Subsequent server renders (hit cache)</span>
+engine.<span class="text-blue-400">renderFile</span>(templateString, { key: <span class="text-rose-400">'home-page'</span> });</code></pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
