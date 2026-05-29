@@ -17,5 +17,6 @@
 		"dev": "node ./src/index.js --watch",
 		"start": "node ./src/index.js"
 	},
+	"type": "module",
 	"version": "1.0.0"
 }
