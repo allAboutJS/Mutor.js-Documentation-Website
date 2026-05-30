@@ -25,6 +25,7 @@ const normalizePath = (path) => {
 };
 
 server.use(express.static("public"));
+
 server.set("views", "views/pages");
 server.set("view engine", "html");
 
@@ -35,11 +36,11 @@ server.engine("html", (path, options, callback) => {
 	);
 });
 
-server.get("/docs/*all", (req, res) => {
+server.get("/", (req, res) => {
 	res.render(normalizePath(req.path), docsData);
 });
 
-server.get("*all", (req, res) => {
+server.get("/docs/*all", (req, res) => {
 	res.render(normalizePath(req.path), docsData);
 });
 
