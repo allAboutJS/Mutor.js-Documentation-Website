@@ -20,6 +20,7 @@
 		"indentStyle": "tab"
 	},
 	"html": {
+		"experimentalFullSupportEnabled": true,
 		"parser": { "interpolation": true }
 	},
 	"javascript": {

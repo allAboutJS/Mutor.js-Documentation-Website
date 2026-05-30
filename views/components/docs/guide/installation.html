@@ -1,0 +1,181 @@
+<div class="space-y-12 animate-fade-in font-sans text-zinc-400">
+  <section class="space-y-6">
+    <h1 class="text-4xl font-bold tracking-[-0.03em] text-white mb-4">
+      Installation & Setup
+    </h1>
+    <p class="leading-relaxed">
+      Mutor.js distributes separate build targets to match specific runtime
+      contexts. Choosing an entry point dictates the availability of internal
+      I/O methods versus client-side component caching interfaces.
+    </p>
+  </section>
+
+  <section class="space-y-10">
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold flex items-center gap-2">
+        Browser CDN Target
+      </h3>
+      <p class="leading-relaxed">
+        Loads via standard script tag execution. Instantiates a global class
+        constructor directly on the <code>window</code> object. This bundle
+        excludes Node <code>fs</code> bindings and includes the client component
+        registration pipeline.
+      </p>
+      <div
+        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
+      >
+        <div
+          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+        >
+          <pre><code><span class="text-zinc-500">&lt;!-- Target script injection --&gt;</span>
+&lt;script src=<span class="text-rose-400">"https://cdn.jsdelivr.net/npm/mutorjs@latest/dist/index.js"</span>&gt;&lt;/script&gt;
+
+&lt;script&gt;
+  <span class="text-zinc-500">// Global scope instantiation</span>
+  <span class="text-violet-400">const</span> engine = <span class="text-violet-400">new</span> <span class="text-blue-400">Mutor</span>();
+
+  <span class="text-zinc-500">// Component compilation and cache assignment</span>
+  engine.<span class="text-blue-400">registerComponent</span>(<span class="text-rose-400">"user-card"</span>, <span class="text-rose-400">"&lt;div&gt;\{{ name }}&lt;/div&gt;"</span>);
+
+  <span class="text-zinc-500">// Execution pass</span>
+  <span class="text-violet-400">const</span> output = engine.<span class="text-blue-400">renderComponent</span>(<span class="text-rose-400">"user-card"</span>, { name: <span class="text-rose-400">"Victor"</span> });
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold flex items-center gap-2">
+        Standard Package Module Target (Client/Bundler)
+      </h3>
+      <p class="leading-relaxed">
+        For projects processed via bundlers (Vite, Webpack, Esbuild). Matches
+        the browser CDN API footprint, exposing standard memory parsing and
+        component methods.
+      </p>
+      <div
+        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
+      >
+        <div
+          class="p-5 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+        >
+          <pre><code><span class="text-zinc-500">// ESM module resolution import</span>
+<span class="text-violet-400">import</span> <span class="text-blue-400">Mutor</span> <span class="text-violet-400">from</span> <span class="text-rose-400">"mutorjs"</span>;
+
+<span class="text-violet-400">const</span> engine = <span class="text-violet-400">new</span> <span class="text-blue-400">Mutor</span>();
+
+engine.<span class="text-blue-400">registerComponent</span>(<span class="text-rose-400">"nav-link"</span>, <span class="text-rose-400">"&lt;a href='\{{ url }}'&gt;\{{ text }}&lt;/a&gt;"</span>);
+<span class="text-violet-400">const</span> html = engine.<span class="text-blue-400">render</span>(<span class="text-rose-400">"\{{ text }}"</span>, { text: <span class="text-rose-400">"Documentation"</span> });</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold flex items-center gap-2">
+        Server Module Target (Node.js/Backend)
+      </h3>
+      <p class="leading-relaxed">
+        Explicit backend distribution containing direct structural hooks to the
+        host operating system's filesystem via native Node paths.
+        <code>registerComponent</code> and
+        <code>renderComponent</code> evaluations are stripped from this
+        execution path.
+      </p>
+      <div
+        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
+      >
+        <div
+          class="p-5 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+        >
+          <pre><code><span class="text-zinc-500">// System level isolated file scope entry import</span>
+<span class="text-violet-400">import</span> <span class="text-blue-400">Mutor</span> <span class="text-violet-400">from</span> <span class="text-rose-400">"mutorjs/server"</span>;
+
+<span class="text-violet-400">const</span> engine = <span class="text-violet-400">new</span> <span class="text-blue-400">Mutor</span>();
+
+<span class="text-zinc-500">// Synchronous File System I/O execution</span>
+<span class="text-violet-400">const</span> htmlSync = engine.<span class="text-blue-400">renderFile</span>(<span class="text-rose-400">"./templates/index.mutor"</span>, { key: <span class="text-rose-400">"home"</span> });
+
+<span class="text-zinc-500">// Asynchronous non-blocking Promise filesystem evaluation</span>
+<span class="text-violet-400">const</span> htmlAsync = <span class="text-violet-400">await</span> engine.<span class="text-blue-400">renderFileAsync</span>(<span class="text-rose-400">"./templates/index.mutor"</span>, { key: <span class="text-rose-400">"home"</span> });</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="text-2xl font-bold tracking-wide text-white mb-3">
+      API Availability
+    </h3>
+
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left border-collapse">
+          <thead>
+            <tr
+              class="bg-zinc-950 border-b border-zinc-800 text-white font-bold"
+            >
+              <th class="p-3.5 tracking-wide">Method Signature</th>
+              <th class="p-3.5 tracking-wide text-blue-500">
+                Browser CDN (`dist/index.js`)
+              </th>
+              <th class="p-3.5 tracking-wide text-violet-400">
+                Standard Import (`mutorjs`)
+              </th>
+              <th class="p-3.5 tracking-wide text-rose-400">
+                Server Import (`mutorjs/server`)
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-800 text-zinc-300 bg-zinc-950/40">
+            <tr class="hover:bg-zinc-900/40">
+              <td class="p-3.5 font-semibold text-white">
+                render(template, data)
+              </td>
+              <td class="p-3.5 text-emerald-400">Supported</td>
+              <td class="p-3.5 text-emerald-400">Supported</td>
+              <td class="p-3.5 text-emerald-400">Supported</td>
+            </tr>
+            <tr class="hover:bg-zinc-900/40">
+              <td class="p-3.5 font-semibold text-white">
+                renderAsync(template, data)
+              </td>
+              <td class="p-3.5 text-emerald-400">Supported</td>
+              <td class="p-3.5 text-emerald-400">Supported</td>
+              <td class="p-3.5 text-emerald-400">Supported</td>
+            </tr>
+            <tr class="hover:bg-zinc-900/40">
+              <td class="p-3.5 font-semibold">
+                registerComponent(name, template)
+              </td>
+              <td class="p-3.5 text-emerald-400">Supported</td>
+              <td class="p-3.5 text-emerald-400">Supported</td>
+              <td class="p-3.5 text-zinc-600">Not Available</td>
+            </tr>
+            <tr class="hover:bg-zinc-900/40">
+              <td class="p-3.5 font-semibold">renderComponent(name, data)</td>
+              <td class="p-3.5 text-emerald-400">Supported</td>
+              <td class="p-3.5 text-emerald-400">Supported</td>
+              <td class="p-3.5 text-zinc-600">Not Available</td>
+            </tr>
+            <tr class="hover:bg-zinc-900/40">
+              <td class="p-3.5 font-semibold">
+                renderFile(path, data, options)
+              </td>
+              <td class="p-3.5 text-zinc-600">Not Available</td>
+              <td class="p-3.5 text-zinc-600">Not Available</td>
+              <td class="p-3.5 text-emerald-400">Supported</td>
+            </tr>
+            <tr class="hover:bg-zinc-900/40">
+              <td class="p-3.5 font-semibold">
+                renderFileAsync(path, data, options)
+              </td>
+              <td class="p-3.5 text-zinc-600">Not Available</td>
+              <td class="p-3.5 text-zinc-600">Not Available</td>
+              <td class="p-3.5 text-emerald-400">Supported</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>

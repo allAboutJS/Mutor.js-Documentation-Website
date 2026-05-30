@@ -14,8 +14,9 @@
 	"main": "src/index.js",
 	"name": "mutorjs-docs",
 	"scripts": {
-		"dev": "node ./src/index.js --watch",
-		"start": "node ./src/index.js"
+		"dev": "node --watch ./src/index.js",
+		"start": "node ./src/index.js",
+		"start:tailwind": "npx @tailwindcss/cli -i ./src/input.css -o ./public/styles/app.css --watch"
 	},
 	"type": "module",
 	"version": "1.0.0"

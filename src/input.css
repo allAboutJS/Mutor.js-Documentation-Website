@@ -56,3 +56,11 @@
 .container {
 	@apply max-w-7xl mx-auto;
 }
+
+code {
+    @apply italic;
+}
+
+pre code {
+    @apply not-italic;
+}

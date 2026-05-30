@@ -1,15 +1,29 @@
 import express from "express";
 import Mutor from "mutorjs/server";
+import docsData from "./lib/docs.data.js";
 
 const engine = new Mutor({
 	allowFnCalls: true,
 	cache: { active: process.env.NODE_ENV === "production" },
+	onIncludeError(meta) {
+		console.log(meta);
+	},
+	onIncludeFail: "ignoreLog",
+	rootDir: "views",
 });
+
 const server = express();
 const port = process.env.PORT || 3000;
 
-server.use(express.static("public"));
+const normalizePath = (path) => {
+	if (path === "/") path = "index";
+	if (path.endsWith("/")) path += "index";
 
+	path = path.replace(/^\/+/, "");
+	return path;
+};
+
+server.use(express.static("public"));
 server.set("views", "views/pages");
 server.set("view engine", "html");
 
@@ -20,8 +34,12 @@ server.engine("html", (path, options, callback) => {
 	);
 });
 
-server.get("/", (_, res) => {
-	res.render("index", { title: "Mutor.js Docs" });
+server.get("/docs/*all", (req, res) => {
+	res.render(normalizePath(req.path), docsData);
+});
+
+server.get("*all", (req, res) => {
+	res.render(normalizePath(req.path), docsData);
 });
 
 server.listen(port, () => {
