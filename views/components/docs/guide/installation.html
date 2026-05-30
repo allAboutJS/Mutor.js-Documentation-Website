@@ -12,7 +12,7 @@
 
   <section class="space-y-10">
     <div class="space-y-3">
-      <h3 class="text-white text-xl font-bold flex items-center gap-2">
+      <h3 class="text-white text-xl font-bold">
         Browser CDN Target
       </h3>
       <p class="leading-relaxed">
@@ -25,53 +25,27 @@
         class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
       >
         <div
-          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+          class="font-mono text-sm leading-6 overflow-x-auto"
         >
-          <pre><code><span class="text-zinc-500">&lt;!-- Target script injection --&gt;</span>
-&lt;script src=<span class="text-rose-400">"https://cdn.jsdelivr.net/npm/mutorjs@latest/dist/index.js"</span>&gt;&lt;/script&gt;
+          <pre><code class="language-html">&lt;!-- Target script injection --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/mutorjs@latest/dist/index.js"&gt;&lt;/script&gt;
 
 &lt;script&gt;
-  <span class="text-zinc-500">// Global scope instantiation</span>
-  <span class="text-violet-400">const</span> engine = <span class="text-violet-400">new</span> <span class="text-blue-400">Mutor</span>();
+  // Global scope instantiation
+  const engine = new Mutor();
 
-  <span class="text-zinc-500">// Component compilation and cache assignment</span>
-  engine.<span class="text-blue-400">registerComponent</span>(<span class="text-rose-400">"user-card"</span>, <span class="text-rose-400">"&lt;div&gt;\{{ name }}&lt;/div&gt;"</span>);
+  // Component compilation and cache assignment
+  engine.registerComponent("user-card", "&lt;div&gt;{{ name }}&lt;/div&gt;");
 
-  <span class="text-zinc-500">// Execution pass</span>
-  <span class="text-violet-400">const</span> output = engine.<span class="text-blue-400">renderComponent</span>(<span class="text-rose-400">"user-card"</span>, { name: <span class="text-rose-400">"Victor"</span> });
+  // Execution pass
+  const output = engine.renderComponent("user-card", { name: "Victor" });
 &lt;/script&gt;</code></pre>
         </div>
       </div>
     </div>
 
     <div class="space-y-3">
-      <h3 class="text-white text-xl font-bold flex items-center gap-2">
-        Standard Package Module Target (Client/Bundler)
-      </h3>
-      <p class="leading-relaxed">
-        For projects processed via bundlers (Vite, Webpack, Esbuild). Matches
-        the browser CDN API footprint, exposing standard memory parsing and
-        component methods.
-      </p>
-      <div
-        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
-      >
-        <div
-          class="p-5 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
-        >
-          <pre><code><span class="text-zinc-500">// ESM module resolution import</span>
-<span class="text-violet-400">import</span> <span class="text-blue-400">Mutor</span> <span class="text-violet-400">from</span> <span class="text-rose-400">"mutorjs"</span>;
-
-<span class="text-violet-400">const</span> engine = <span class="text-violet-400">new</span> <span class="text-blue-400">Mutor</span>();
-
-engine.<span class="text-blue-400">registerComponent</span>(<span class="text-rose-400">"nav-link"</span>, <span class="text-rose-400">"&lt;a href='\{{ url }}'&gt;\{{ text }}&lt;/a&gt;"</span>);
-<span class="text-violet-400">const</span> html = engine.<span class="text-blue-400">render</span>(<span class="text-rose-400">"\{{ text }}"</span>, { text: <span class="text-rose-400">"Documentation"</span> });</code></pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="space-y-3">
-      <h3 class="text-white text-xl font-bold flex items-center gap-2">
+      <h3 class="text-white text-xl font-bold">
         Server Module Target (Node.js/Backend)
       </h3>
       <p class="leading-relaxed">
@@ -85,18 +59,18 @@ engine.<span class="text-blue-400">registerComponent</span>(<span class="text-ro
         class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
       >
         <div
-          class="p-5 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+          class="font-mono text-sm leading-6 overflow-x-auto"
         >
-          <pre><code><span class="text-zinc-500">// System level isolated file scope entry import</span>
-<span class="text-violet-400">import</span> <span class="text-blue-400">Mutor</span> <span class="text-violet-400">from</span> <span class="text-rose-400">"mutorjs/server"</span>;
+          <pre><code class="language-javascript">// System level isolated file scope entry import
+import Mutor from "mutorjs/server";
 
-<span class="text-violet-400">const</span> engine = <span class="text-violet-400">new</span> <span class="text-blue-400">Mutor</span>();
+const engine = new Mutor();
 
-<span class="text-zinc-500">// Synchronous File System I/O execution</span>
-<span class="text-violet-400">const</span> htmlSync = engine.<span class="text-blue-400">renderFile</span>(<span class="text-rose-400">"./templates/index.mutor"</span>, { key: <span class="text-rose-400">"home"</span> });
+// Synchronous File System I/O execution
+const htmlSync = engine.renderFile("./templates/index.mutor", { key: "home" });
 
-<span class="text-zinc-500">// Asynchronous non-blocking Promise filesystem evaluation</span>
-<span class="text-violet-400">const</span> htmlAsync = <span class="text-violet-400">await</span> engine.<span class="text-blue-400">renderFileAsync</span>(<span class="text-rose-400">"./templates/index.mutor"</span>, { key: <span class="text-rose-400">"home"</span> });</code></pre>
+// Asynchronous non-blocking Promise filesystem evaluation
+const htmlAsync = await engine.renderFileAsync("./templates/index.mutor", { key: "home" });</code></pre>
         </div>
       </div>
     </div>
@@ -129,7 +103,7 @@ engine.<span class="text-blue-400">registerComponent</span>(<span class="text-ro
           <tbody class="divide-y divide-zinc-800 text-zinc-300 bg-zinc-950/40">
             <tr class="hover:bg-zinc-900/40">
               <td class="p-3.5 font-semibold text-white">
-                render(template, data)
+                <code>render(template, data)</code>
               </td>
               <td class="p-3.5 text-emerald-400">Supported</td>
               <td class="p-3.5 text-emerald-400">Supported</td>
@@ -137,7 +111,7 @@ engine.<span class="text-blue-400">registerComponent</span>(<span class="text-ro
             </tr>
             <tr class="hover:bg-zinc-900/40">
               <td class="p-3.5 font-semibold text-white">
-                renderAsync(template, data)
+                <code>renderAsync(template, data)</code>
               </td>
               <td class="p-3.5 text-emerald-400">Supported</td>
               <td class="p-3.5 text-emerald-400">Supported</td>
@@ -145,21 +119,21 @@ engine.<span class="text-blue-400">registerComponent</span>(<span class="text-ro
             </tr>
             <tr class="hover:bg-zinc-900/40">
               <td class="p-3.5 font-semibold">
-                registerComponent(name, template)
+                <code>registerComponent(name, template)</code>
               </td>
               <td class="p-3.5 text-emerald-400">Supported</td>
               <td class="p-3.5 text-emerald-400">Supported</td>
               <td class="p-3.5 text-zinc-600">Not Available</td>
             </tr>
             <tr class="hover:bg-zinc-900/40">
-              <td class="p-3.5 font-semibold">renderComponent(name, data)</td>
+              <td class="p-3.5 font-semibold"><code>renderComponent(name, data)</code></td>
               <td class="p-3.5 text-emerald-400">Supported</td>
               <td class="p-3.5 text-emerald-400">Supported</td>
               <td class="p-3.5 text-zinc-600">Not Available</td>
             </tr>
             <tr class="hover:bg-zinc-900/40">
               <td class="p-3.5 font-semibold">
-                renderFile(path, data, options)
+                <code>renderFile(path, data, options)</code>
               </td>
               <td class="p-3.5 text-zinc-600">Not Available</td>
               <td class="p-3.5 text-zinc-600">Not Available</td>
@@ -167,7 +141,7 @@ engine.<span class="text-blue-400">registerComponent</span>(<span class="text-ro
             </tr>
             <tr class="hover:bg-zinc-900/40">
               <td class="p-3.5 font-semibold">
-                renderFileAsync(path, data, options)
+                <code>renderFileAsync(path, data, options)</code>
               </td>
               <td class="p-3.5 text-zinc-600">Not Available</td>
               <td class="p-3.5 text-zinc-600">Not Available</td>

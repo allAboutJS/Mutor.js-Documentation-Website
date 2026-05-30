@@ -1,6 +1,7 @@
 import express from "express";
 import Mutor from "mutorjs/server";
 import docsData from "./lib/docs.data.js";
+import "dotenv/config";
 
 const engine = new Mutor({
 	allowFnCalls: true,

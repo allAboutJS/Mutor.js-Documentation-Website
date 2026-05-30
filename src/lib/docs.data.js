@@ -18,6 +18,14 @@ const nav = [
 				href: "/docs/guide/syntax-guide.html",
 				title: "Syntax Guide",
 			},
+			{
+				href: "/docs/guide/namespaces.html",
+				title: "Namespaces",
+			},
+			{
+				href: "/docs/guide/context-and-data-access.html",
+				title: "Context and Data Access",
+			},
 		],
 	},
 	{
@@ -58,6 +66,18 @@ const nav = [
 
 export default {
 	pages: {
+		contextAndDataAccess: {
+			description: "",
+			nav,
+			pagination: {
+				prevPage: {
+					path: "/docs/guide/namespaces.html",
+					title: "Namespaces",
+				},
+			},
+			path: "@/components/docs/guide/context-and-data-access.html",
+			title: "Context and Data Access | Mutor.js Docs",
+		},
 		installation: {
 			description: "",
 			nav,
@@ -88,6 +108,23 @@ export default {
 			title: "Introduction | Mutor.js Docs",
 		},
 
+		namespaces: {
+			description: "",
+			nav,
+			pagination: {
+				nextPage: {
+					path: "/docs/guide/context-and-data-access.html",
+					title: "Context and Data Access",
+				},
+				prevPage: {
+					path: "/docs/guide/syntax-guide.html",
+					title: "Syntax Guide",
+				},
+			},
+			path: "@/components/docs/guide/namespaces.html",
+			title: "Namespaces | Mutor.js Docs",
+		},
+
 		quickStart: {
 			description: "",
 			nav,
@@ -109,6 +146,10 @@ export default {
 			description: "",
 			nav,
 			pagination: {
+				nextPage: {
+					path: "/docs/guide/namespaces.html",
+					title: "Namespaces",
+				},
 				prevPage: {
 					path: "/docs/guide/quick-start.html",
 					title: "Quick Start",

@@ -58,9 +58,9 @@
 }
 
 code {
-    @apply italic;
+	@apply italic font-mono!;
 }
 
 pre code {
-    @apply not-italic;
+	@apply not-italic;
 }

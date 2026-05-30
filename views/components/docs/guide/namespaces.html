@@ -1,0 +1,577 @@
+<div class="space-y-12 animate-fade-in font-sans text-zinc-400">
+  <section class="space-y-6">
+    <h1 class="text-4xl font-bold tracking-[-0.03em] text-white mb-4">
+      Namespaces
+    </h1>
+
+    <p class="leading-relaxed">
+      Mutor templates execute inside an isolated environment. Unlike regular
+      JavaScript, templates do not have access to global objects, runtime APIs,
+      imported modules, or the surrounding execution scope.
+    </p>
+
+    <p class="leading-relaxed">
+      To make common functionality available while preserving isolation, Mutor
+      exposes a collection of built-in namespaces. These namespaces provide a
+      carefully selected subset of functionality from JavaScript's standard
+      library while maintaining strict boundaries around template execution.
+    </p>
+
+    <p class="leading-relaxed">
+      Namespaces are accessed using the namespace operator and are available in
+      every template by default.
+    </p>
+  </section>
+
+  <section class="space-y-10">
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold">Why Namespaces Exist</h3>
+
+      <p class="leading-relaxed">
+        Templates are designed for presentation, not unrestricted code
+        execution. Mutor therefore avoids exposing JavaScript globals directly
+        and instead provides a controlled execution model through namespaces.
+      </p>
+
+      <p class="leading-relaxed">
+        This allows templates to perform common operations such as date
+        formatting, JSON serialization, object inspection, and mathematical
+        calculations without exposing the runtime environment.
+      </p>
+
+      <div
+        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
+      >
+        <div
+          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+        >
+          <pre><code>\{{ <span class="text-blue-400">Date</span>::<span class="text-blue-400">now</span>() }}
+
+\{{ <span class="text-blue-400">Array</span>::<span class="text-blue-400">isArray</span>(users) }}
+
+\{{ <span class="text-blue-400">JSON</span>::<span class="text-blue-400">stringify</span>(user) }}
+
+\{{ <span class="text-blue-400">Math</span>::<span class="text-blue-400">floor</span>(price) }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold">Context Resolution</h3>
+
+      <p class="leading-relaxed">
+        Unlike many template engines, Mutor does not require a context prefix.
+        Properties provided to the renderer can be referenced directly from
+        within templates.
+      </p>
+
+      <div
+        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
+      >
+        <div
+          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+        >
+          <pre><code><span class="text-violet-400">const</span> data = {
+  user: {
+    name: <span class="text-rose-400">"Victor"</span>
+  }
+};</code></pre>
+        </div>
+      </div>
+
+      <p class="leading-relaxed">The property can then be accessed directly.</p>
+
+      <div
+        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
+      >
+        <div
+          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+        >
+          <pre><code>\{{ user.name }}</code></pre>
+        </div>
+      </div>
+
+      <p class="leading-relaxed">
+        Internally, Mutor resolves identifiers against the provided context.
+        Conceptually, the expression behaves as though it were accessing the
+        context object directly.
+      </p>
+
+      <div
+        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
+      >
+        <div
+          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+        >
+          <pre><code>ctx.user.name</code></pre>
+        </div>
+      </div>
+
+      <p class="leading-relaxed">
+        As a result, template expressions cannot escape their context and access
+        arbitrary runtime objects.
+      </p>
+
+      <div
+        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
+      >
+        <div
+          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+        >
+          <pre><code>\{{ process.exit() }}</code></pre>
+        </div>
+      </div>
+
+      <p class="leading-relaxed">is interpreted as:</p>
+
+      <div
+        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
+      >
+        <div
+          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+        >
+          <pre><code>ctx.process.exit()</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold">Namespace Syntax</h3>
+
+      <p class="leading-relaxed">
+        Namespaces are referenced using the namespace operator.
+      </p>
+
+      <div
+        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
+      >
+        <div
+          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+        >
+          <pre><code>Namespace::member</code></pre>
+        </div>
+      </div>
+
+      <p class="leading-relaxed">
+        A member may be either a property or a method exposed by the namespace.
+      </p>
+
+      <div
+        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
+      >
+        <div
+          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+        >
+          <pre><code>\{{ <span class="text-blue-400">Date</span>::<span class="text-blue-400">now</span>() }}
+
+\{{ <span class="text-blue-400">Math</span>::<span class="text-blue-400">PI</span> }}
+
+\{{ <span class="text-blue-400">JSON</span>::<span class="text-blue-400">stringify</span>(user) }}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="space-y-10">
+    <h2 class="text-2xl font-bold text-white">The Mutor Namespace</h2>
+
+    <div class="space-y-3">
+      <p class="leading-relaxed">
+        The Mutor namespace provides functionality specific to the template
+        engine itself.
+      </p>
+
+      <table class="w-full border border-zinc-800 rounded-xl overflow-hidden">
+        <thead class="bg-zinc-900">
+          <tr>
+            <th class="text-left p-4 text-white">Member</th>
+            <th class="text-left p-4 text-white">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">include(path, context?)</td>
+            <td class="p-4">Includes and renders another template.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">await(promise)</td>
+            <td class="p-4">Resolves a Promise in async templates.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">iter.index</td>
+            <td class="p-4">Current loop index inside a for...of loop.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div
+        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
+      >
+        <div
+          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+        >
+          <pre><code>\{{ <span class="text-blue-400">Mutor</span>::<span class="text-blue-400">include</span>(<span class="text-rose-400">"components/card"</span>) }}
+
+\{{ <span class="text-blue-400">Mutor</span>::<span class="text-blue-400">await</span>(fetchUser()) }}
+
+\{{ <span class="text-blue-400">Mutor</span>::<span class="text-blue-400">iter</span>.index }}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="space-y-10">
+    <h2 class="text-2xl font-bold text-white">Built-in Namespaces</h2>
+
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold">JSON</h3>
+
+      <p class="leading-relaxed">
+        Provides JSON serialization and parsing utilities.
+      </p>
+
+      <table class="w-full border border-zinc-800 rounded-xl overflow-hidden">
+        <thead class="bg-zinc-900">
+          <tr>
+            <th class="text-left p-4 text-white">Method</th>
+            <th class="text-left p-4 text-white">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">stringify(value, space?)</td>
+            <td class="p-4">Converts a value into a JSON string.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">parse(string)</td>
+            <td class="p-4">Parses a JSON string.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold">Object</h3>
+
+      <p class="leading-relaxed">
+        Provides utilities for inspecting and transforming objects.
+      </p>
+
+      <table class="w-full border border-zinc-800 rounded-xl overflow-hidden">
+        <thead class="bg-zinc-900">
+          <tr>
+            <th class="text-left p-4 text-white">Method</th>
+            <th class="text-left p-4 text-white">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">keys(obj)</td>
+            <td class="p-4">Returns object keys.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">values(obj)</td>
+            <td class="p-4">Returns object values.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">entries(obj)</td>
+            <td class="p-4">Returns object entries.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">hasOwn(obj, key)</td>
+            <td class="p-4">
+              Checks whether a property exists directly on an object.
+            </td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">fromEntries(entries)</td>
+            <td class="p-4">Creates an object from entries.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">pick(obj, keys)</td>
+            <td class="p-4">
+              Creates a new object containing only selected keys.
+            </td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">omit(obj, keys)</td>
+            <td class="p-4">Creates a new object excluding selected keys.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold">Array</h3>
+
+      <p class="leading-relaxed">
+        Provides array inspection, transformation, and generation utilities.
+      </p>
+
+      <table class="w-full border border-zinc-800 rounded-xl overflow-hidden">
+        <thead class="bg-zinc-900">
+          <tr>
+            <th class="text-left p-4 text-white">Method</th>
+            <th class="text-left p-4 text-white">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">isArray(value)</td>
+            <td class="p-4">Checks if a value is an array.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">from(value)</td>
+            <td class="p-4">Creates an array from an iterable.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">of(...values)</td>
+            <td class="p-4">Creates an array from values.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">unique(array)</td>
+            <td class="p-4">Removes duplicate values.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">compact(array)</td>
+            <td class="p-4">Removes falsy values.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">chunk(array, size)</td>
+            <td class="p-4">Splits an array into chunks.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">range(start, end, step?)</td>
+            <td class="p-4">Generates a numeric range.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold">Number</h3>
+
+      <table class="w-full border border-zinc-800 rounded-xl overflow-hidden">
+        <thead class="bg-zinc-900">
+          <tr>
+            <th class="text-left p-4 text-white">Method</th>
+            <th class="text-left p-4 text-white">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">isFinite(value)</td>
+            <td class="p-4">Checks finiteness.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">isNaN(value)</td>
+            <td class="p-4">Checks NaN.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">isInteger(value)</td>
+            <td class="p-4">Checks integer values.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">parseInt(value, radix?)</td>
+            <td class="p-4">Parses an integer.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">parseFloat(value)</td>
+            <td class="p-4">Parses a floating-point number.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">clamp(value, min, max)</td>
+            <td class="p-4">Constrains a value to a range.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">toFixed(value, digits?)</td>
+            <td class="p-4">Formats a number with fixed decimals.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">random(min?, max?)</td>
+            <td class="p-4">Generates a random number.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold">String</h3>
+
+      <table class="w-full border border-zinc-800 rounded-xl overflow-hidden">
+        <thead class="bg-zinc-900">
+          <tr>
+            <th class="text-left p-4 text-white">Method</th>
+            <th class="text-left p-4 text-white">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">fromCharCode(...codes)</td>
+            <td class="p-4">Creates a string from character codes.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">capitalize(value)</td>
+            <td class="p-4">Capitalizes the first character.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold">Math</h3>
+
+      <table class="w-full border border-zinc-800 rounded-xl overflow-hidden">
+        <thead class="bg-zinc-900">
+          <tr>
+            <th class="text-left p-4 text-white">Member</th>
+            <th class="text-left p-4 text-white">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">PI</td>
+            <td class="p-4">Pi constant.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">abs(x)</td>
+            <td class="p-4">Absolute value.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">floor(x)</td>
+            <td class="p-4">Rounds down.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">ceil(x)</td>
+            <td class="p-4">Rounds up.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">round(x)</td>
+            <td class="p-4">Rounds normally.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">trunc(x)</td>
+            <td class="p-4">Removes decimals.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">sign(x)</td>
+            <td class="p-4">Returns sign.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">sqrt(x)</td>
+            <td class="p-4">Square root.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">pow(base, exponent)</td>
+            <td class="p-4">Exponentiation.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">max(...values)</td>
+            <td class="p-4">Largest value.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">min(...values)</td>
+            <td class="p-4">Smallest value.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">random()</td>
+            <td class="p-4">Random number.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold">Date</h3>
+
+      <table class="w-full border border-zinc-800 rounded-xl overflow-hidden">
+        <thead class="bg-zinc-900">
+          <tr>
+            <th class="text-left p-4 text-white">Method</th>
+            <th class="text-left p-4 text-white">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">now()</td>
+            <td class="p-4">Current timestamp.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">parse(value)</td>
+            <td class="p-4">Parses a date string.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">new(value?)</td>
+            <td class="p-4">Creates a Date instance.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">iso(value?)</td>
+            <td class="p-4">Returns an ISO string.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">timestamp(value?)</td>
+            <td class="p-4">Returns a timestamp.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold">Boolean</h3>
+
+      <table class="w-full border border-zinc-800 rounded-xl overflow-hidden">
+        <thead class="bg-zinc-900">
+          <tr>
+            <th class="text-left p-4 text-white">Method</th>
+            <th class="text-left p-4 text-white">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">valueOf(value)</td>
+            <td class="p-4">Converts a value to a boolean.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-white text-xl font-bold">URL</h3>
+
+      <table class="w-full border border-zinc-800 rounded-xl overflow-hidden">
+        <thead class="bg-zinc-900">
+          <tr>
+            <th class="text-left p-4 text-white">Method</th>
+            <th class="text-left p-4 text-white">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">encode(value)</td>
+            <td class="p-4">Encodes a URI component.</td>
+          </tr>
+          <tr class="border-t border-zinc-800">
+            <td class="p-4 font-mono">decode(value)</td>
+            <td class="p-4">Decodes a URI component.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="space-y-3">
+    <h2 class="text-2xl font-bold text-white">Security Considerations</h2>
+
+    <p class="leading-relaxed">
+      Mutor resolves identifiers exclusively against the template context and
+      registered namespaces. Objects outside those boundaries are not accessible
+      from template expressions.
+    </p>
+
+    <p class="leading-relaxed">
+      The integrity of the rendering context remains the responsibility of the
+      application. Any object intentionally exposed through the context remains
+      available to template code.
+    </p>
+  </section>
+</div>
