@@ -1,263 +1,191 @@
-<div class="space-y-12 animate-fade-in font-sans text-zinc-400">
+<div class="space-y-12 animate-fade-in font-sans">
   <section class="space-y-6">
-    <h1 class="text-4xl font-bold tracking-[-0.03em] text-white mb-4">
-      Context &amp; Data Access
-    </h1>
+    <h1 class="text-4xl font-bold mb-4">Context &amp; Data Access</h1>
 
-
-    <p class="leading-relaxed">
+    <p>
       Every template executes against a context. The context represents the data
       available to the template during rendering and serves as the source of all
       identifier resolution.
     </p>
 
-    <p class="leading-relaxed">
+    <p>
       Unlike many template engines, Mutor does not require explicit context
       prefixes. Properties supplied to the renderer can be referenced directly,
       allowing templates to remain concise while maintaining strict isolation
       from the surrounding runtime environment.
     </p>
-
   </section>
 
   <section class="space-y-10">
     <div class="space-y-3">
-      <h3 class="text-white text-xl font-bold">Context Values</h3>
+      <h3 class="text-xl font-bold">Context Values</h3>
 
-
-      <p class="leading-relaxed">
+      <p>
         Context is the value passed alongside a template during rendering. Any
         JavaScript value can be used as a context, although objects are
         generally recommended because they provide the cleanest access pattern.
       </p>
 
-      <div
-        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
-      >
-        <div
-          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
-        >
-          <pre><code><span class="text-zinc-500">// Object context</span>
-
-
-<span class="text-violet-400">const</span> html = mutor.<span class="text-blue-400">render</span>(
-template,
-{
-user: {
-name: <span class="text-rose-400">"Victor"</span>
-}
-}
+      <div class="border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="text-sm font-mono overflow-x-auto">
+          <pre><code class="language-javascript">// Object context
+const html = mutor.render(
+  template,
+  {
+    user: {
+      name: "Victor"
+    }
+  }
 );</code></pre>
         </div>
       </div>
 
+      <p>Object properties become available directly within the template.</p>
 
-      <p class="leading-relaxed">
-        Object properties become available directly within the template.
-      </p>
+      <div class="border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="text-sm font-mono overflow-x-auto">
+          <pre><code class="language-javascript">// Property access
+\{{ user.name }}
 
-      <div
-        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
-      >
-        <div
-          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
-        >
-          <pre><code><span class="text-zinc-500">&lt;!-- Property access --&gt;</span>
+// Nested property access
+\{{ user.profile.avatar }}
 
+// Array access
+\{{ users[0].name }}
 
-<span class="text-blue-400">\{{ user.name }}</span>
-
-<span class="text-zinc-500"><!-- Nested property access --></span> <span class="text-blue-400">\{{ user.profile.avatar }}</span>
-
-<span class="text-zinc-500"><!-- Array access --></span> <span class="text-blue-400">\{{ users[0].name }}</span>
-
-<span class="text-zinc-500"><!-- Dynamic access --></span> <span class="text-blue-400">\{{ user[field] }}</span></code></pre>
+// Dynamic access
+\{{ user[field] }}</code></pre>
         </div>
       </div>
 
-
-      <p class="leading-relaxed">
+      <p>
         Context is not limited to objects. Strings, arrays, numbers, booleans,
         null values, and any other JavaScript value may also be supplied when
         appropriate.
       </p>
 
-      <div
-        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
-      >
-        <div
-          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
-        >
-          <pre><code><span class="text-zinc-500">// String context</span>
+      <div class="border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="text-sm font-mono overflow-x-auto">
+          <pre><code class="language-javascript">// String context
+mutor.render(template, "Hello World");
 
+// Array context
+mutor.render(template, [1, 2, 3]);
 
-mutor.<span class="text-blue-400">render</span>(
-template, <span class="text-rose-400">"Hello World"</span>
-);
-
-<span class="text-zinc-500">// Array context</span>
-mutor.<span class="text-blue-400">render</span>(
-template,
-[<span class="text-rose-400">1</span>, <span class="text-rose-400">2</span>, <span class="text-rose-400">3</span>]
-);
-
-<span class="text-zinc-500">// Null context</span>
-mutor.<span class="text-blue-400">render</span>(
-template, <span class="text-violet-400">null</span>
-);</code></pre>
+// Null context
+mutor.render(template, null);</code></pre>
         </div>
       </div>
     </div>
 
-
     <div class="space-y-3">
-      <h3 class="text-white text-xl font-bold">Context Resolution</h3>
+      <h3 class="text-xl font-bold">Context Resolution</h3>
 
-      <p class="leading-relaxed">
+      <p>
         Mutor resolves identifiers against the supplied context automatically.
         Properties can therefore be referenced directly without requiring
         explicit prefixes such as <code>ctx</code> or <code>it</code>.
       </p>
 
-      <div
-        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
-      >
-        <div
-          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
-        >
-          <pre><code><span class="text-zinc-500">&lt;!-- Direct property access --&gt;</span>
-
-
-<span class="text-blue-400">\{{ user.name }}</span></code></pre>
+      <div class="border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="text-sm font-mono overflow-x-auto">
+          <pre><code class="language-javascript">// Direct property access
+\{{ user.name }}</code></pre>
         </div>
       </div>
 
+      <p>Conceptually, the expression above behaves similarly to:</p>
 
-      <p class="leading-relaxed">
-        Conceptually, the expression above behaves similarly to:
-      </p>
-
-      <div
-        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
-      >
-        <div
-          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
-        >
-          <pre><code>ctx.user.name</code></pre>
+      <div class="border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="text-sm font-mono overflow-x-auto">
+          <pre><code class="language-javascript">ctx.user.name</code></pre>
         </div>
       </div>
 
-      <p class="leading-relaxed">
+      <p>
         This design keeps templates concise while ensuring that access remains
         confined to the supplied context and registered namespaces.
       </p>
     </div>
 
     <div class="space-y-3">
-      <h3 class="text-white text-xl font-bold">Direct Context Access</h3>
+      <h3 class="text-xl font-bold">Direct Context Access</h3>
 
-      <p class="leading-relaxed">
+      <p>
         In situations where the original context value must be accessed
         directly, Mutor provides <code>Mutor::$$context</code>.
       </p>
 
-      <p class="leading-relaxed">
+      <p>
         The syntax is intentionally loud. Accessing the root context should be
         immediately visible when reading a template.
       </p>
 
-      <div
-        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
-      >
-        <div
-          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
-        >
-          <pre><code><span class="text-zinc-500">&lt;!-- Access the original context value --&gt;</span>
-
-
-<span class="text-blue-400">\{{ Mutor::$$context }}</span></code></pre>
+      <div class="border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="text-sm font-mono overflow-x-auto">
+          <pre><code class="language-javascript">// Access the original context value
+\{{ Mutor::$$context }}</code></pre>
         </div>
       </div>
 
-
-      <p class="leading-relaxed">
+      <p>
         This is particularly useful when rendering against primitive values or
         other non-object contexts.
       </p>
 
-      <div
-        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
-      >
-        <div
-          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
-        >
-          <pre><code><span class="text-zinc-500">// Render using a string as the context</span>
+      <div class="border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="font-mono overflow-x-auto">
+          <pre><code class="language-javascript">// Render using a string as the context
+mutor.render(template, "Hello World");
 
-
-mutor.<span class="text-blue-400">render</span>(
-template, <span class="text-rose-400">"Hello World"</span>
-);
-
-<span class="text-zinc-500"><!-- Access the string directly --></span> <span class="text-blue-400">\{{ Mutor::$$context }}</span></code></pre>
+// Access the string context directly
+\{{ Mutor::$$context }}</code></pre>
         </div>
       </div>
     </div>
 
-
     <div class="space-y-3">
-      <h3 class="text-white text-xl font-bold">Runtime Errors</h3>
+      <h3 class="text-xl font-bold">Runtime Errors</h3>
 
-      <p class="leading-relaxed">
+      <p>
         Property access, function calls, and expressions are evaluated at
         runtime. Invalid property access, calling non-callable values, or any
         other runtime failure will result in an error being thrown during
         rendering.
       </p>
 
-      <p class="leading-relaxed">
+      <p>
         Errors originating from context functions are propagated unchanged.
         Mutor does not wrap, modify, or reinterpret exceptions thrown by
         application code.
       </p>
 
-      <div
-        class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
-      >
-        <div
-          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
-        >
-          <pre><code><span class="text-violet-400">const</span> context = {
-
-
-getUser() { <span class="text-violet-400">throw</span> <span class="text-violet-400">new</span> Error( <span class="text-rose-400">"User lookup failed"</span>
-);
-}
+      <div class="border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="text-sm font-mono overflow-x-auto">
+          <pre><code class="language-javascript">const context = {
+  getUser() {
+    throw new Error("User lookup failed");
+  }
 };</code></pre>
         </div>
       </div>
 
+      <p>If the function throws, the original error is returned as-is.</p>
 
-      <p class="leading-relaxed">
-        If the function throws, the original error is returned as-is.
-      </p>
-
-      <p class="leading-relaxed">
+      <p>
         Runtime errors currently do not include template location tracking.
         Mutor does not yet provide source mapping or execution tracing capable
         of identifying the exact template location responsible for a runtime
         failure.
       </p>
 
-      <p class="leading-relaxed">
+      <p>
         Compilation errors are different. Mutor ships with compilation error
         tracking and detailed diagnostic messages designed to help identify and
         resolve issues before a template is executed.
       </p>
 
-      <p class="leading-relaxed">
-        More information can be found in the Errors documentation.
-      </p>
+      <p>More information can be found in the Errors documentation.</p>
     </div>
-
   </section>
 </div>

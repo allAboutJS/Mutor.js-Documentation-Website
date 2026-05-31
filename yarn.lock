@@ -112,6 +112,42 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@minify-html/node-darwin-arm64@0.18.1":
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/@minify-html/node-darwin-arm64/-/node-darwin-arm64-0.18.1.tgz#32138c6be8d4bb5b69722848716e20cc40467bd0"
+  integrity sha512-sc/VJHRcHtEk0IQP2hRA/TWkAQntaYH3RCw8n750NbfzliQqkyrDqNAGiKBOli7UlhFtG/H2aWqGjtOjIM/dZA==
+
+"@minify-html/node-darwin-x64@0.18.1":
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/@minify-html/node-darwin-x64/-/node-darwin-x64-0.18.1.tgz#648e256ce91c236b795b6bc1db668c50ef7001af"
+  integrity sha512-0bff2ng4Vgp3+kdC8zgjd5dMN04zkM4nGuYEVP4dLR7J5NCD/Ka4XD4CKNSDZ9goLYQ8BjtKD6AeDTfJ8KBjrA==
+
+"@minify-html/node-linux-arm64@0.18.1":
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/@minify-html/node-linux-arm64/-/node-linux-arm64-0.18.1.tgz#4e55f20c5f45e598591e23643889a8ace988acab"
+  integrity sha512-CVGu5XVmmDrGFuA9/b/695rJBFvfTZFwKJJYA1ZXAsBZrqlKVO4bfXPq9DVNmhQ76ky3LFtVZ/+UsU7xpyK5Qw==
+
+"@minify-html/node-linux-x64@0.18.1":
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/@minify-html/node-linux-x64/-/node-linux-x64-0.18.1.tgz#4592fd7827c6a29fc0d91c41d7ed1fa0d7039f8a"
+  integrity sha512-qmIv4kRyhZTKO3nXDXHlFrhnmwIKTM57ZRomlYRYdZTWiFW3CbJ4Ggg57qIgx7D/t4dgyS7/O8OTetrWvmEg9w==
+
+"@minify-html/node-win32-x64@0.18.1":
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/@minify-html/node-win32-x64/-/node-win32-x64-0.18.1.tgz#bf1a885321c529d1ded41d659f20d917bf41e039"
+  integrity sha512-SNRE/NvcKXvh4UwXTRrujNSWaCj/3E+FFN+FLOBaN4FY+dZG83h6nWxGHJ5+LAoJxVTU7Al1e8toi4JjHpzv2w==
+
+"@minify-html/node@^0.18.1":
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/@minify-html/node/-/node-0.18.1.tgz#6a0aa6c5eb10bda7ef5d959ffd41e46b3ffeb643"
+  integrity sha512-pNOv6z9zUDrjTU1+VcPOnDzGeaaqd6m9kbyHU+sg9O35450uzfke8ahx8gKlFdp/kQFrRn2rFIGAoANUZ62nSw==
+  optionalDependencies:
+    "@minify-html/node-darwin-arm64" "0.18.1"
+    "@minify-html/node-darwin-x64" "0.18.1"
+    "@minify-html/node-linux-arm64" "0.18.1"
+    "@minify-html/node-linux-x64" "0.18.1"
+    "@minify-html/node-win32-x64" "0.18.1"
+
 "@napi-rs/wasm-runtime@^1.1.4":
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/@napi-rs/wasm-runtime/-/wasm-runtime-1.1.4.tgz#a46bbfedc29751b7170c5d23bc1d8ee8c7e3c1e1"

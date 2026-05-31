@@ -1,9 +1,9 @@
-<div class="space-y-12 animate-fade-in font-sans text-zinc-400">
+<div class="space-y-12 animate-fade-in font-sans ">
   <section class="space-y-6">
-    <h1 class="text-4xl font-bold tracking-[-0.03em] text-white mb-4">
+    <h1 class="text-4xl font-bold mb-4">
       Quick Start
     </h1>
-    <p class="leading-relaxed">
+    <p>
       Execute common compilation workflows across different environment
       paradigms. These baseline execution sheets establish syntax benchmarks for
       single-pass renders, optimized functional iterations, and server-side I/O
@@ -13,10 +13,10 @@
 
   <section class="space-y-10">
     <div class="space-y-3">
-      <h3 class="text-white text-xl font-bold flex items-center gap-2">
+      <h3 class=" text-xl font-bold flex items-center gap-2">
         Basic Render
       </h3>
-      <p class="leading-relaxed">
+      <p>
         Performs immediate compilation and synchronous variable assignment on
         raw string inputs. Best suited for single-pass evaluations where cache
         persistence is handled outside the execution loop.
@@ -25,28 +25,28 @@
         class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
       >
         <div
-          class="p-6 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+          class="bg-zinc-950 font-mono text-sm overflow-x-auto"
         >
-          <pre><code><span class="text-violet-400">import</span> <span class="text-blue-400">Mutor</span> <span class="text-violet-400">from</span> <span class="text-rose-400">"mutorjs"</span>;
+          <pre><code class="language-javascript">import Mutor from "mutorjs";
 
-<span class="text-violet-400">const</span> mutor = <span class="text-violet-400">new</span> <span class="text-blue-400">Mutor</span>();
+const mutor = new Mutor();
 
-<span class="text-violet-400">const</span> output = mutor.<span class="text-blue-400">render</span>(
-  <span class="text-rose-400">`&lt;h1&gt;\{{ greeting }}, \{{ user.name }}!&lt;/h1&gt;`</span>,
-  { greeting: <span class="text-rose-400">"Hello"</span>, user: { name: <span class="text-rose-400">"Onah"</span> } }
+const output = mutor.render(
+  `&lt;h1&gt;\{{ greeting }}, \{{ user.name }}!&lt;/h1&gt;`,
+  { greeting: "Hello", user: { name: "Onah" } }
 );
 
-console.<span class="text-blue-400">log</span>(output);
-<span class="text-zinc-500">// &lt;h1&gt;Hello, Onah!&lt;/h1&gt;</span></code></pre>
+console.log(output);
+// &lt;h1&gt;Hello, Onah!&lt;/h1&gt;</code></pre>
         </div>
       </div>
     </div>
 
     <div class="space-y-3">
-      <h3 class="text-white text-xl font-bold flex items-center gap-2">
+      <h3 class=" text-xl font-bold flex items-center gap-2">
         Compile Once, Execute Many Times
       </h3>
-      <p class="leading-relaxed">
+      <p>
         Compiles template strings directly into an abstract syntax tree and
         generates a native JavaScript runner function. This completely
         eliminates internal parsing and string analysis overhead during
@@ -56,31 +56,31 @@ console.<span class="text-blue-400">log</span>(output);
         class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
       >
         <div
-          class="p-5 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+          class="g-zinc-950 text-sm font-mono overflow-x-auto"
         >
-          <pre><code><span class="text-violet-400">import</span> <span class="text-blue-400">Mutor</span> <span class="text-violet-400">from</span> <span class="text-rose-400">"mutorjs"</span>;
+          <pre><code class="language-javascript">import Mutor from "mutorjs";
 
-<span class="text-violet-400">const</span> mutor = <span class="text-violet-400">new</span> <span class="text-blue-400">Mutor</span>();
+const mutor = new Mutor();
 
-<span class="text-violet-400">const</span> fn = mutor.<span class="text-blue-400">compile</span>(<span class="text-rose-400">`&lt;p&gt;\{{ item.title }}&lt;/p&gt;`</span>);
+const fn = mutor.compile(`&lt;p&gt;\{{ item.title }}&lt;/p&gt;`);
 
-<span class="text-violet-400">const</span> items = [
-  { title: <span class="text-rose-400">"Alpha"</span> },
-  { title: <span class="text-rose-400">"Beta"</span> },
-  { title: <span class="text-rose-400">"Gamma"</span> }
+const items = [
+  { title: "Alpha" },
+  { title: "Beta" },
+  { title: "Gamma" }
 ];
 
-<span class="text-zinc-500">// Reuses the optimized native function references directly</span>
-<span class="text-violet-400">const</span> rendered = items.<span class="text-blue-400">map</span>(item =&gt; <span class="text-blue-400">fn</span>({ item }));</code></pre>
+// Reuses the optimized native function references directly
+const rendered = items.map(item => fn({ item }));</code></pre>
         </div>
       </div>
     </div>
 
     <div class="space-y-3">
-      <h3 class="text-white text-xl font-bold flex items-center gap-2">
+      <h3 class=" text-xl font-bold flex items-center gap-2">
         File Rendering (Server Only)
       </h3>
-      <p class="leading-relaxed">
+      <p>
         Performs non-blocking disk operations using the isolated server module
         bundle. Resolves absolute local project file targets, handles internal
         storage streaming, and updates hot-reload cache buffers.
@@ -89,28 +89,28 @@ console.<span class="text-blue-400">log</span>(output);
         class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
       >
         <div
-          class="p-5 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+          class="text-sm font-mono overflow-x-auto"
         >
-          <pre><code><span class="text-violet-400">import</span> <span class="text-blue-400">Mutor</span> <span class="text-violet-400">from</span> <span class="text-rose-400">"mutorjs/server"</span>;
+          <pre><code class="language-javascript">import Mutor from "mutorjs/server";
 
-<span class="text-violet-400">const</span> mutor = <span class="text-violet-400">new</span> <span class="text-blue-400">Mutor</span>();
+const mutor = new Mutor();
 
-<span class="text-zinc-500">// Direct async asynchronous operating system layout call</span>
-<span class="text-violet-400">const</span> html = <span class="text-violet-400">await</span> mutor.<span class="text-blue-400">renderFile</span>(<span class="text-rose-400">"./views/index.html"</span>, {
-  title: <span class="text-rose-400">"Dashboard"</span>,
+// Direct async asynchronous operating system layout call
+const html = await mutor.renderFile("./views/index.html", {
+  title: "Dashboard",
   user: req.user
 });
 
-res.<span class="text-blue-400">send</span>(html);</code></pre>
+res.send(html);</code></pre>
         </div>
       </div>
     </div>
 
     <div class="space-y-3">
-      <h3 class="text-white text-xl font-bold flex items-center gap-2">
+      <h3 class=" text-xl font-bold flex items-center gap-2">
         Component Rendering
       </h3>
-      <p class="leading-relaxed">
+      <p>
         Registers fragments into global instance memory to let components stitch
         and reuse layout sub-sections dynamically across client-side runtimes or
         asset bundlers.
@@ -119,23 +119,24 @@ res.<span class="text-blue-400">send</span>(html);</code></pre>
         class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
       >
         <div
-          class="p-5 bg-zinc-950 font-mono text-xs leading-6 overflow-x-auto"
+          class="text-sm font-mono overflow-x-auto"
         >
-          <pre><code><span class="text-violet-400">import</span> <span class="text-blue-400">Mutor</span> <span class="text-violet-400">from</span> <span class="text-rose-400">"mutorjs"</span>;
+          <pre><code class="language-javascript">&lt;!-- ES Module isolated runtime import --&gt;
+import Mutor from &quot;mutorjs&quot;;
 
-<span class="text-violet-400">const</span> mutor = <span class="text-violet-400">new</span> <span class="text-blue-400">Mutor</span>();
+const mutor = new Mutor();
 
-mutor.<span class="text-blue-400">registerComponent</span>(
-  <span class="text-rose-400">"card"</span>,
-  <span class="text-rose-400">`  &lt;div class="card"&gt;
+mutor.registerComponent(
+  &quot;card&quot;,
+  `  &lt;div class=&quot;card&quot;&gt;
     &lt;h2&gt;\{{ card.title }}&lt;/h2&gt;
     &lt;p&gt;\{{ card.body }}&lt;/p&gt;
-  &lt;/div&gt;`</span>
+  &lt;/div&gt;`
 );
 
-<span class="text-zinc-500">// Direct modular block lookup and resolution execution pass</span>
-<span class="text-violet-400">const</span> output = mutor.<span class="text-blue-400">renderComponent</span>(<span class="text-rose-400">"card"</span>, {
-  card: { title: <span class="text-rose-400">"Notice"</span>, body: <span class="text-rose-400">"This is a component."</span> }
+// Direct modular block lookup and resolution execution pass
+const output = mutor.renderComponent(&quot;card&quot;, {
+  card: { title: &quot;Notice&quot;, body: &quot;This is a component.&quot; }
 });</code></pre>
         </div>
       </div>

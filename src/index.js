@@ -2,6 +2,7 @@ import express from "express";
 import Mutor from "mutorjs/server";
 import docsData from "./lib/docs.data.js";
 import "dotenv/config";
+import minifier from "@minify-html/node";
 
 const engine = new Mutor({
 	allowFnCalls: true,
@@ -30,9 +31,19 @@ server.set("views", "views/pages");
 server.set("view engine", "html");
 
 server.engine("html", (path, options, callback) => {
+	const htmlBuffer = Buffer.from(
+		engine.renderFile(path, { ...options, mutorVersion: "1.5.6" }),
+		"utf-8",
+	);
+
 	callback(
 		null,
-		engine.renderFile(path, { ...options, mutorVersion: "1.5.6" }),
+		minifier
+			.minify(htmlBuffer, {
+				keep_comments: false,
+				keep_spaces_between_attributes: false,
+			})
+			.toString("utf-8"),
 	);
 });
 

@@ -3,7 +3,7 @@ const nav = [
 		heading: "Core Guide",
 		links: [
 			{
-				href: "/docs/guide",
+				href: "/docs/guide/introduction.html",
 				title: "Introduction",
 			},
 			{
@@ -78,6 +78,7 @@ export default {
 			path: "@/components/docs/guide/context-and-data-access.html",
 			title: "Context and Data Access | Mutor.js Docs",
 		},
+
 		installation: {
 			description: "",
 			nav,
@@ -87,7 +88,7 @@ export default {
 					title: "Quick Start",
 				},
 				prevPage: {
-					path: "/docs/guide",
+					path: "/docs/guide/introduction.html",
 					title: "Introduction",
 				},
 			},

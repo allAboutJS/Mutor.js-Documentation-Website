@@ -6,7 +6,7 @@
     {{ for group of nav }}
     <div>
       <h4
-        class="text-xs font-bold tracking-wide uppercase mb-3 {{ group.id === 'core-guide' ? 'text-white' : 'text-zinc-400' }}"
+        class="text-sm font-bold uppercase mb-3"
       >
         {{ group.heading }}
       </h4>
@@ -15,7 +15,7 @@
         {{ for link of group.links }}
         <a
           href="{{ link.href }}"
-          class="text-zinc-500 hover:text-white text-sm py-1.5 transition-colors duration-150"
+          class="{{ link.href == path.replace('@/components', '') ? 'text-blue-400' : 'text-zinc-300' }} hover: text-sm py-1.5 transition-colors duration-150"
         >
           {{ link.title }}
         </a>
