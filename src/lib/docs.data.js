@@ -26,6 +26,10 @@ const nav = [
 				href: "/docs/guide/context-and-data-access.html",
 				title: "Context and Data Access",
 			},
+			{
+				href: "/docs/guide/includes.html",
+				title: "Includes & Partials",
+			},
 		],
 	},
 	{
@@ -70,6 +74,10 @@ export default {
 			description: "",
 			nav,
 			pagination: {
+				nextPage: {
+					path: "/docs/guide/includes.html",
+					title: "Includes & Partials",
+				},
 				prevPage: {
 					path: "/docs/guide/namespaces.html",
 					title: "Namespaces",
@@ -77,6 +85,19 @@ export default {
 			},
 			path: "@/components/docs/guide/context-and-data-access.html",
 			title: "Context and Data Access | Mutor.js Docs",
+		},
+
+		includes: {
+			description: "",
+			nav,
+			pagination: {
+				prevPage: {
+					path: "/docs/guide/context-and-data-access.html",
+					title: "Context and Data Access",
+				},
+			},
+			path: "@/components/docs/guide/includes.html",
+			title: "Includes & Partials | Mutor.js Docs",
 		},
 
 		installation: {

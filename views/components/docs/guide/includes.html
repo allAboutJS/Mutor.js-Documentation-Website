@@ -1,0 +1,223 @@
+<div class="space-y-12 animate-fade-in font-sans">
+  <section class="space-y-6">
+    <h1 class="text-4xl font-bold mb-4">Includes &amp; Layouts</h1>
+
+    <p>
+      Mutor does not provide a dedicated layout system. Instead, it provides a
+      partial and component system through <code>Mutor::include()</code>.
+    </p>
+
+    <p>
+      While this may sound limiting at first, nested includes are usually all
+      that is needed to build page shells, reusable navigation, cards,
+      dashboards, and other complex layouts. Rather than introducing a separate
+      layout abstraction, Mutor focuses on composition and leaves structure
+      entirely in the hands of the application.
+    </p>
+  </section>
+
+  <section class="space-y-10">
+    <div class="space-y-3">
+      <h3 class="text-xl font-bold">Including Partials</h3>
+
+      <p>
+        Partials are included using <code>Mutor::include()</code>. The first
+        argument identifies the component to include while the optional second
+        argument specifies the context that should be used when rendering that
+        partial. If no context is supplied, the current execution context is
+        reused automatically.
+      </p>
+
+      <p>
+        Included templates may themselves include other templates, making it
+        possible to compose larger structures from smaller reusable pieces.
+        Mutor supports nested includes and keeps track of inclusion chains to
+        prevent cyclic inclusions from causing infinite recursion.
+      </p>
+
+      <div class="border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="text-sm font-mono overflow-x-auto">
+          <pre><code class="language-javascript">\{{ Mutor::include("header") }}
+
+\{{ Mutor::include("user-card", user) }}</code></pre>
+        </div>
+      </div>
+
+      <p>
+        Includes themselves are synchronous. However, if an included template
+        contains asynchronous operations through
+        <code>Mutor::await()</code>, the include may return a promise. In such
+        cases the include can be wrapped in <code>Mutor::await()</code> to
+        resolve the result before rendering continues.
+      </p>
+
+      <div class="border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="text-sm font-mono overflow-x-auto">
+          <pre><code class="language-javascript">\{{ Mutor::await(
+  Mutor::include("profile")
+) }}</code></pre>
+        </div>
+      </div>
+
+      <p>
+        Only do this when the included template is known to be asynchronous.
+      </p>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-xl font-bold">Registering Components</h3>
+
+      <p>
+        In standard Mutor environments, components can be registered directly on
+        the instance. Registration stores the template in Mutor's internal
+        component cache and makes it available for both direct rendering and
+        inclusion.
+      </p>
+
+      <p>
+        Once registered, a component can be rendered using
+        <code>renderComponent()</code>. Components containing asynchronous
+        operations must instead be rendered using
+        <code>renderAsyncComponent()</code> and awaited.
+      </p>
+
+      <div class="border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="text-sm font-mono overflow-x-auto">
+          <pre><code class="language-javascript">mutor.registerComponent(
+  "header",
+  "&lt;header&gt;\{{ title }}&lt;/header&gt;"
+);
+
+const html = mutor.renderComponent(
+  "header",
+  context
+);
+
+const asyncHtml =
+  await mutor.renderAsyncComponent(
+    "header",
+    context
+  );</code></pre>
+        </div>
+      </div>
+
+      <p>
+        Attempting to include or render a component that has not been registered
+        results in an error. Registration may also fail when the component
+        cannot be stored within the configured cache limits.
+      </p>
+
+      <p>
+        Cache size can be configured through the instance options. More
+        information can be found in the Configuration documentation.
+      </p>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-xl font-bold">Server-Side Includes</h3>
+
+      <p>
+        Server-side includes work differently from component includes. Instead
+        of resolving component names, Mutor resolves templates directly from the
+        filesystem. When an include is encountered, Mutor determines the
+        location of the including template, resolves the requested path to an
+        absolute location, and uses that absolute path as the cache key.
+      </p>
+
+      <p>
+        If the template has already been compiled, the cached version is reused
+        immediately. Otherwise, Mutor reads the file from disk, compiles it,
+        stores it in the cache, and then renders it.
+      </p>
+
+      <p>
+        Because includes are resolved through the filesystem, relative paths are
+        supported naturally. Mutor also supports <code>@/</code> aliases which
+        resolve relative to the configured <code>baseDir</code>.
+      </p>
+
+      <div class="border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="text-sm font-mono overflow-x-auto">
+          <pre><code class="language-javascript">new Mutor({
+  baseDir: "./views"
+});
+
+\{{ Mutor::include("./partials/header.html") }}
+
+\{{ Mutor::include(
+  "@/components/header.html"
+) }}</code></pre>
+        </div>
+      </div>
+
+      <p>
+        Unlike the standard Mutor runtime, the server implementation does not
+        expose <code>registerComponent()</code>. This is an intentional design
+        choice and means component registries must be managed externally when
+        required.
+      </p>
+
+      <p>
+        If a referenced file cannot be found, the underlying filesystem error is
+        surfaced as a Mutor error.
+      </p>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-xl font-bold">Handling Include Errors</h3>
+
+      <p>
+        Failed includes throw by default and terminate the current rendering
+        operation. This behavior can be changed using the
+        <code>onIncludeFail</code> option.
+      </p>
+
+      <p>
+        Setting the value to <code>"ignore"</code> skips failed includes
+        silently, while <code>"ignoreLog"</code> skips the include and reports
+        the failure. When either option is used, Mutor invokes
+        <code>onIncludeError()</code> and passes metadata describing the failed
+        inclusion.
+      </p>
+
+      <p>
+        Forgive the naming convention. Lol.
+      </p>
+
+      <div class="border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="text-sm font-mono overflow-x-auto">
+          <pre><code class="language-javascript">new Mutor({
+  onIncludeFail: "ignoreLog",
+
+  onIncludeError(meta) {
+    console.log(meta);
+
+    return "&lt;!-- unavailable --&gt;";
+  }
+});</code></pre>
+        </div>
+      </div>
+
+      <p>
+        The metadata contains information about the include that failed,
+        including the source template, requested path, and resolved absolute
+        path when available.
+      </p>
+
+      <div class="border border-zinc-800 rounded-xl overflow-hidden">
+        <div class="text-sm font-mono overflow-x-auto">
+          <pre><code class="language-typescript">{
+  from: string;
+  path: string;
+  absolutePath?: string;
+}</code></pre>
+        </div>
+      </div>
+
+      <p>
+        Whatever value is returned from <code>onIncludeError()</code> is
+        inserted into the output in place of the failed include.
+      </p>
+    </div>
+  </section>
+</div>
