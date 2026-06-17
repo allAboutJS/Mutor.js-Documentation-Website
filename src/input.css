@@ -41,6 +41,97 @@
 	.code-block {
 		@apply bg-black/40 border border-white/5 p-4 rounded-none font-mono overflow-x-auto text-blue-300;
 	}
+
+	.docs-prose {
+		@apply max-w-3xl text-[15px] leading-7 text-zinc-300 sm:text-base;
+	}
+
+	.docs-prose h1 {
+		@apply mb-6 text-4xl font-semibold tracking-tight text-[#faf7ef] sm:text-5xl;
+	}
+
+	.docs-prose h2 {
+		@apply mt-14 mb-4 scroll-mt-24 text-2xl font-semibold tracking-tight text-[#f4f4f5];
+	}
+
+	.docs-prose h3 {
+		@apply mt-10 mb-3 scroll-mt-24 text-xl font-semibold text-[#f4f4f5];
+	}
+
+	.docs-prose p,
+	.docs-prose ul,
+	.docs-prose ol,
+	.docs-prose blockquote,
+	.docs-prose pre,
+	.docs-prose table {
+		@apply my-5;
+	}
+
+	.docs-prose p,
+	.docs-prose ul,
+	.docs-prose ol,
+	.docs-prose blockquote,
+	.docs-prose table {
+		@apply max-w-3xl;
+	}
+
+	.docs-prose ul,
+	.docs-prose ol {
+		@apply pl-6;
+	}
+
+	.docs-prose ul {
+		@apply list-disc;
+	}
+
+	.docs-prose ol {
+		@apply list-decimal;
+	}
+
+	.docs-prose li {
+		@apply my-2;
+	}
+
+	.docs-prose a {
+		@apply text-violet-300 underline decoration-violet-400/30 underline-offset-4 transition-colors hover:text-violet-200;
+	}
+
+	.docs-prose strong {
+		@apply font-semibold text-zinc-100;
+	}
+
+	.docs-prose hr {
+		@apply my-12 border-zinc-800;
+	}
+
+	.docs-prose blockquote {
+		@apply border-l border-violet-400/60 pl-4 text-zinc-400;
+	}
+
+	.docs-prose :not(pre) > code {
+		@apply rounded-md border border-zinc-800 bg-zinc-900 px-1.5 py-0.5 not-italic text-[0.95em] text-zinc-100;
+	}
+
+	.docs-prose pre {
+		@apply overflow-x-auto rounded-2xl border border-zinc-800 bg-[#131419] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)];
+	}
+
+	.docs-prose pre code {
+		@apply bg-transparent p-0 text-sm text-zinc-100;
+	}
+
+	.docs-prose table {
+		@apply w-full border-collapse overflow-hidden rounded-2xl border border-zinc-800 text-left text-sm;
+	}
+
+	.docs-prose thead {
+		@apply bg-zinc-900/70;
+	}
+
+	.docs-prose th,
+	.docs-prose td {
+		@apply border border-zinc-800 px-3 py-2 align-top;
+	}
 }
 
 .container {
@@ -52,7 +143,7 @@ code {
 }
 
 pre code {
-	@apply not-italic;
+	@apply not-italic text-sm;
 }
 
 pre {

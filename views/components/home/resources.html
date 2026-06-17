@@ -1,61 +1,74 @@
-<section
-  class="py-24 border-t border-zinc-800/60 bg-linear-to-b from-zinc-950 to-black"
->
-  <div class="container mx-auto px-6 text-center">
-    <h2 class="text-4xl lg:text-5xl font-bold  mb-6">
-      Built for Security. <br />Ready for Production.
-    </h2>
-    <p class="max-w-md mx-auto mb-12">
-      From core concepts to security architecture and source code exploration,
-      everything you need to evaluate and deploy Mutor with confidence.
-    </p>
+<section class="border-t border-zinc-800 bg-[#18191f]">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
+    <div class="max-w-2xl">
+      <p class="text-sm font-semibold text-violet-300">Why Mutor.js</p>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-zinc-100 sm:text-4xl">
+        Small surface area, useful composition features, and safer defaults.
+      </h2>
+      <p class="mt-4 text-base leading-8 text-zinc-400">
+        Mutor is a practical choice for documentation sites, static output,
+        server-rendered HTML, and teams that want template power without giving
+        templates unrestricted access to the JavaScript runtime.
+      </p>
+    </div>
 
-    <div
-      class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-5xl mx-auto text-left"
-    >
-      <a
-        href="/docs/guide/introduction.html"
-        class="bg-zinc-900 border border-zinc-800 p-6 rounded-xl hover:border-blue-500/50 transition duration-150 group"
-      >
-        <h3
-          class="font-semibold text-sm mb-1 tracking-[-0.01em] group-hover:text-blue-400 transition"
-        >
-          Core Guides &rarr;
-        </h3>
-        <p class="text-zinc-300 text-sm">
-          Deep-dive parameters for absolute template orchestration.
+    <div class="mt-10 grid gap-4 lg:grid-cols-3">
+      <article class="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-6">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">Read the guide</p>
+        <h3 class="mt-3 text-xl font-semibold text-zinc-100">Learn the template language quickly</h3>
+        <p class="mt-3 text-sm leading-7 text-zinc-400">
+          Start with the introduction, installation, getting started, syntax,
+          includes, layouts, and the security model.
         </p>
-      </a>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/docs" class="inline-flex rounded-xl bg-violet-500 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-violet-400">Open docs</a>
+          <a href="/docs/getting-started" class="inline-flex rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-900">Quickstart</a>
+        </div>
+      </article>
 
-      <a
-        href="/docs/security"
-        class="bg-zinc-900 border border-zinc-800 p-6 rounded-xl hover:border-blue-500/50 transition duration-150 group"
-      >
-        <h3
-          class="font-semibold text-sm mb-1 tracking-[-0.01em] group-hover:text-blue-400 transition"
-        >
-          Security Audit &rarr;
-        </h3>
-        <p class="text-zinc-300 text-sm">
-          Review the sandboxing compilation architecture bounds.
+      <article class="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-6">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">Security posture</p>
+        <h3 class="mt-3 text-xl font-semibold text-zinc-100">Constrained templates by design</h3>
+        <p class="mt-3 text-sm leading-7 text-zinc-400">
+          Mutor escapes interpolated output by default, blocks dangerous
+          property access, and disables context function calls unless you opt in.
         </p>
-      </a>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/docs/security" class="inline-flex rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-900">Review security</a>
+          <a href="/docs/escaping" class="inline-flex rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-900">Escaping</a>
+        </div>
+      </article>
 
-      <a
-        href="https://github.com/allAboutJS/Mutor.js"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="bg-zinc-900 border border-zinc-800 p-6 rounded-xl hover:border-blue-500/50 transition duration-150 group"
-      >
-        <h3
-          class="font-semibold text-sm mb-1 tracking-[-0.01em] group-hover:text-blue-400 transition"
-        >
-          Contribute &rarr;
-        </h3>
-        <p class="text-zinc-300 text-sm">
-          Clone the open source TypeScript engine repository on GitHub.
+      <article class="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-6">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">Reference</p>
+        <h3 class="mt-3 text-xl font-semibold text-zinc-100">API, CLI, config, and migration notes</h3>
+        <p class="mt-3 text-sm leading-7 text-zinc-400">
+          Jump straight into the API reference, CLI usage, configuration
+          options, caching, and the v2 to v3 migration guide.
         </p>
-      </a>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/docs/api" class="inline-flex rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-900">API reference</a>
+          <a href="/docs/cli" class="inline-flex rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-900">CLI</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="mt-10 rounded-3xl border border-zinc-800 bg-[linear-gradient(135deg,rgba(139,92,246,0.12),rgba(24,25,31,0.96))] p-6 sm:p-8">
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+        <div>
+          <p class="text-sm font-semibold text-violet-300">Ready to try it?</p>
+          <h3 class="mt-2 text-2xl font-semibold tracking-tight text-zinc-100">Render your first template in a few lines.</h3>
+          <p class="mt-3 max-w-2xl text-sm leading-7 text-zinc-300">
+            Use the getting started guide to render strings, files, includes,
+            and layouts, then move into the docs reference when you need more.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="/docs/getting-started" class="inline-flex rounded-xl bg-violet-500 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-violet-400">Get started</a>
+          <a href="https://github.com/allAboutJS/Mutor.js" class="inline-flex rounded-xl border border-zinc-700 bg-zinc-950/60 px-4 py-2.5 text-sm text-zinc-100 transition hover:border-zinc-500">View source</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>

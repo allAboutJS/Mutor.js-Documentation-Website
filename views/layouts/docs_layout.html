@@ -1,0 +1,46 @@
+{{# layout "docs_layout" }}
+{{# use "root" }}
+
+{{ ::include("@/components/docs/topbar.html") }}
+{{ ::include("@/components/docs/search_modal.html") }}
+
+<div data-docs-sidebar-drawer class="fixed inset-0 z-50 hidden lg:hidden">
+  <button type="button" data-docs-close-nav class="absolute inset-0 bg-black/70 backdrop-blur-sm" aria-label="Close navigation"></button>
+
+  <aside class="relative h-full w-[min(22rem,88vw)] overflow-y-auto border-r border-zinc-800 bg-[#16171b] px-4 py-5 shadow-2xl shadow-black/50">
+    <div class="mb-5 flex items-center justify-between">
+      <a href="/docs" class="text-sm font-semibold text-zinc-100">Documentation</a>
+      <button type="button" data-docs-close-nav class="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-300">Close</button>
+    </div>
+
+    {{ ::include("@/components/docs/sidebar.html") }}
+  </aside>
+</div>
+
+<div class="mx-auto flex min-h-[calc(100vh-4rem)] max-w-[1600px]">
+  <aside class="hidden w-72 shrink-0 border-r border-zinc-800 bg-[#16171b] lg:block">
+    <div class="sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto px-4 py-6">
+      {{ ::include("@/components/docs/sidebar.html") }}
+    </div>
+  </aside>
+
+  <main class="min-w-0 flex-1 bg-[#18191f]">
+    <div class="mx-auto flex w-full max-w-[1200px] px-4 py-8 sm:px-6 lg:px-8 xl:gap-4 xl:py-10 2xl:max-w-[1320px]">
+      <article class="docs-prose min-w-0 max-w-none flex-1 pb-12">
+        {{ if currentDoc }}
+          <p class="mb-5 text-sm font-semibold text-violet-300">{{ currentDoc.group }}</p>
+        {{ endif }}
+
+        {{ ::slot }}
+        {{ ::include("@/components/docs/pager.html") }}
+      </article>
+
+      {{ ::include("@/components/docs/toc.html") }}
+    </div>
+
+    {{ ::include("@/components/docs/footer.html") }}
+  </main>
+</div>
+
+<script src="/scripts/docs-search.js" defer></script>
+<script src="/scripts/docs-ui.js" defer></script>

@@ -5,7 +5,8 @@
 		"@tailwindcss/cli": "^4.3.0",
 		"dotenv": "^17.4.2",
 		"express": "^5.2.1",
-		"mutorjs": "^1.5.5",
+		"markdown-it": "^14.2.0",
+		"mutorjs": "^3.0.0",
 		"tailwindcss": "^4.3.0"
 	},
 	"description": "The official documentation website for Mutor.js",

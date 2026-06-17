@@ -1,75 +1,105 @@
-<section class="relative bg-zinc-950 pt-24 pb-20 overflow-hidden">
-  <!-- dot grid background -->
-  <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-size-[28px_28px] mask-[radial-gradient(ellipse_80%_60%_at_50%_0%,black_40%,transparent_100%)]"></div>
-  <!-- blue glow -->
-  <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-175 h-100 bg-[radial-gradient(ellipse,rgba(59,130,246,0.12)_0%,transparent_70%)] pointer-events-none"></div>
+<section class="relative overflow-hidden border-b border-zinc-800 bg-[#111217]">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.18),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.12),transparent_24%)]"></div>
+  <div class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[40px_40px] opacity-20"></div>
 
-  <div class="relative container mx-auto px-6">
-
-    <!-- badge -->
-    <div class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-700   font-medium px-3.5 py-1.5 rounded-full mb-10">
-      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_var(--color-emerald-400)] animate-pulse shrink-0"></span>
-      v{{ mutorVersion }} — Zero Dependencies · TypeScript Native
-    </div>
-
-    <h1 class="text-5xl lg:text-7xl font-bold tracking-[-0.04em] leading-[1.08]  mb-6 max-w-3xl">
-      The Template Engine<br>
-      Built for <span class="bg-linear-to-br from-blue-400 via-indigo-400 to-violet-400 bg-clip-text text-transparent">Production.</span>
-    </h1>
-
-    <p class="text-lg   mb-10 max-w-xl">
-      AST-compiled. Security-first. No regex. No eval.<br>
-      No dependencies. Just a function call.
-    </p>
-
-    <div class="flex flex-wrap gap-3 mb-16">
-      <a href="/docs/guide/introduction.html" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500  text-sm font-medium px-5 py-2.5 rounded-lg transition-all duration-200 shadow-[0_0_0_0_rgba(59,130,246,0)] hover:shadow-[0_0_24px_rgba(59,130,246,0.4)]">
-        Get Started
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a href="https://github.com/allAboutJS/Mutor.js" class="inline-flex items-center gap-2  hover: text-sm font-medium px-5 py-2.5 border border-zinc-700 hover:border-zinc-500 rounded-lg transition-all duration-200">
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-        GitHub
-      </a>
-    </div>
-
-    <!-- code window + stats -->
-    <div class="grid lg:grid-cols-[1fr_auto] gap-5 items-start">
-      <div class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl">
-        <div class="flex items-center gap-2 px-4 py-3 bg-zinc-900 border-b border-zinc-800">
-          <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
-          <span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
-          <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
-          <span class="ml-2  text-zinc-400 font-mono">template.html</span>
-        </div>
-        <pre class="p-6 text-sm font-mono"><code class="language-html">&lt;ul class="products"&gt;
-\{{ for item of products }}
-  &lt;li&gt;
-  &lt;h2&gt;\{{ item.name }}&lt;/h2&gt;
-  &lt;p&gt;$\{{ item.price }}&lt;/p&gt;
-    \{{ if item.inStock }}
-      &lt;span class="badge"&gt;In Stock&lt;/span&gt;
-    \{{ end }}
-  &lt;/li&gt;
-\{{ end }}
-&lt;ul&gt;</code></pre>
+  <div class="relative mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] lg:items-center lg:gap-14 lg:py-24">
+    <div>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1.5 text-sm text-violet-200">
+        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(74,222,128,0.9)]"></span>
+        v{{ mutorVersion }} · Sync-only runtime · Safe by default
       </div>
 
-      <div class="flex lg:flex-col flex-wrap gap-3">
-        <div class="flex flex-col items-center justify-center gap-1 bg-zinc-900 border border-zinc-800 hover:border-blue-500/40 rounded-xl px-7 py-5 text-center transition-colors duration-200">
-          <span class="text-2xl font-bold tracking-tight text-blue-400">0</span>
-          <span class="text-sm text-zinc-400 uppercase st">Dependencies</span>
+      <h1 class="max-w-3xl text-5xl font-semibold tracking-tight text-[#faf7ef] sm:text-6xl lg:text-7xl">
+        A template engine built for
+        <span class="bg-linear-to-r from-violet-300 via-blue-300 to-zinc-100 bg-clip-text text-transparent">predictable production rendering</span>
+      </h1>
+
+      <p class="mt-6 max-w-2xl text-base leading-8 text-zinc-400 sm:text-lg">
+        Mutor.js gives you fast synchronous rendering, first-class layouts,
+        includes, file rendering, and sensible security defaults without turning
+        templates into unrestricted JavaScript.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/docs/getting-started" class="inline-flex items-center gap-2 rounded-xl bg-violet-500 px-5 py-3 text-sm font-medium text-white transition hover:bg-violet-400">
+          Get started
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/docs" class="inline-flex items-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900 px-5 py-3 text-sm font-medium text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-800">
+          Explore docs
+        </a>
+        <a href="https://github.com/allAboutJS/Mutor.js" class="inline-flex items-center gap-2 rounded-xl border border-zinc-800 bg-transparent px-5 py-3 text-sm font-medium text-zinc-400 transition hover:border-zinc-700 hover:text-zinc-100">
+          GitHub
+        </a>
+      </div>
+
+      <div class="mt-10 grid gap-3 sm:grid-cols-3">
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-4">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">Default safety</p>
+          <p class="mt-2 text-sm leading-6 text-zinc-300">Escaped output, blocked dangerous properties, and function calls disabled by default.</p>
         </div>
-        <div class="flex flex-col items-center justify-center gap-1 bg-zinc-900 border border-zinc-800 hover:border-blue-500/40 rounded-xl px-7 py-5 text-center transition-colors duration-200">
-          <span class="text-2xl font-bold tracking-tight text-blue-400">1×</span>
-          <span class="text-sm text-zinc-400 uppercase st">Parse cost</span>
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-4">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">Composable</p>
+          <p class="mt-2 text-sm leading-6 text-zinc-300">Use includes, registered components, layouts, server rendering, and directory builds.</p>
         </div>
-        <div class="flex flex-col items-center justify-center gap-1 bg-zinc-900 border border-zinc-800 hover:border-blue-500/40 rounded-xl px-7 py-5 text-center transition-colors duration-200">
-          <span class="text-2xl font-bold tracking-tight text-blue-400">TS</span>
-          <span class="text-sm text-zinc-400 uppercase st">Native</span>
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-4">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">Practical syntax</p>
+          <p class="mt-2 text-sm leading-6 text-zinc-300">Conditionals, loops, namespaces, whitespace control, and context-aware rendering.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <div class="overflow-hidden rounded-3xl border border-zinc-800 bg-[#16171d] shadow-[0_20px_80px_rgba(0,0,0,0.45)]">
+        <div class="flex items-center justify-between border-b border-zinc-800 px-4 py-3">
+          <div class="flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-rose-500"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+            <span class="ml-2 text-xs font-mono text-zinc-500">dashboard.html</span>
+          </div>
+          <span class="rounded-lg border border-zinc-800 bg-zinc-900 px-2 py-1 text-[11px] uppercase tracking-[0.18em] text-zinc-500">Mutor</span>
+        </div>
+
+        <pre class="p-0"><code class="language-html">\{{# use "shell" }}
+&lt;section class=&quot;dashboard&quot;&gt;
+  &lt;h1&gt;\{{ user.name }}&lt;/h1&gt;
+
+  \{{ if user.admin }}
+    &lt;span class=&quot;badge&quot;&gt;Admin&lt;/span&gt;
+  \{{ endif }}
+
+  &lt;ul&gt;
+    \{{ for project of projects }}
+      &lt;li&gt;\{{ project.title }}&lt;/li&gt;
+    \{{ endfor }}
+  &lt;/ul&gt;
+&lt;/section&gt;</code></pre>
+      </div>
+
+      <div class="grid gap-3 sm:grid-cols-3">
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-4">
+          <p class="text-2xl font-semibold tracking-tight text-zinc-100">0</p>
+          <p class="mt-1 text-xs uppercase tracking-[0.16em] text-zinc-500">Runtime deps</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-4">
+          <p class="text-2xl font-semibold tracking-tight text-zinc-100">v3</p>
+          <p class="mt-1 text-xs uppercase tracking-[0.16em] text-zinc-500">Layouts included</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-4">
+          <p class="text-2xl font-semibold tracking-tight text-zinc-100">Sync</p>
+          <p class="mt-1 text-xs uppercase tracking-[0.16em] text-zinc-500">Predictable rendering</p>
         </div>
       </div>
 
+      <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-4 sm:p-5">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">Install</p>
+        <div class="mt-3 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-xl border border-zinc-800 bg-[#131419] px-4 py-3 font-mono text-sm text-zinc-200">npm i mutorjs</div>
+          <div class="rounded-xl border border-zinc-800 bg-[#131419] px-4 py-3 font-mono text-sm text-zinc-200">yarn add mutorjs</div>
+          <div class="rounded-xl border border-zinc-800 bg-[#131419] px-4 py-3 font-mono text-sm text-zinc-200">pnpm add mutorjs</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

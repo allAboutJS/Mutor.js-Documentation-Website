@@ -1,0 +1,28 @@
+<div data-docs-search-modal class="fixed inset-0 z-50 hidden md:hidden">
+  <button type="button" data-docs-close-search class="absolute inset-0 bg-black/70 backdrop-blur-sm" aria-label="Close search"></button>
+
+  <div class="relative mx-auto mt-4 flex h-[min(36rem,calc(100vh-2rem))] w-[calc(100%-1rem)] max-w-2xl flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-[#17181d] shadow-2xl shadow-black/50">
+    <div class="flex items-center justify-between border-b border-zinc-800 px-4 py-3">
+      <p class="text-sm font-semibold text-zinc-100">Search docs</p>
+      <button type="button" data-docs-close-search class="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-300">Close</button>
+    </div>
+
+    <div class="border-b border-zinc-800 p-3">
+      <div data-docs-search-root data-search-mode="modal" class="relative">
+        <label for="docs-search-input-mobile" class="sr-only">Search documentation</label>
+        <input
+          id="docs-search-input-mobile"
+          data-docs-search-input
+          type="search"
+          placeholder="Search pages, topics, APIs..."
+          autocomplete="off"
+          class="h-12 w-full rounded-xl border border-zinc-800 bg-zinc-900 pl-11 pr-4 text-sm text-zinc-100 outline-none transition placeholder:text-zinc-500 focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/20"
+        >
+        <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-zinc-500">⌕</span>
+
+        <p data-docs-search-status class="px-1 pt-3 text-xs text-zinc-500">Start typing to search the documentation.</p>
+        <div data-docs-search-results class="mt-3 max-h-[24rem] overflow-y-auto space-y-2 pb-2"></div>
+      </div>
+    </div>
+  </div>
+</div>
