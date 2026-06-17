@@ -21,7 +21,7 @@ const engine = new Mutor({
 
 await engine.addLayoutsInDir("views");
 
-const server = express();
+const app = express();
 const port = process.env.PORT || 3000;
 
 const minifyHtml = (html) =>
@@ -58,12 +58,12 @@ const renderDocsPage = (currentPath) => {
 	);
 };
 
-server.use(express.static("public"));
+app.use(express.static("public"));
 
-server.set("views", "views/pages");
-server.set("view engine", "html");
+app.set("views", "views/pages");
+app.set("view engine", "html");
 
-server.engine("html", (viewPath, options, callback) => {
+app.engine("html", (viewPath, options, callback) => {
 	try {
 		const html = engine.renderFile(viewPath, {
 			...(options || {}),
@@ -76,7 +76,7 @@ server.engine("html", (viewPath, options, callback) => {
 	}
 });
 
-server.get("/", (req, res, next) => {
+app.get("/", (req, res, next) => {
 	try {
 		res.render(normalizeViewPath(req.path), getPageContext("/"));
 	} catch (error) {
@@ -98,15 +98,15 @@ const handleDocsRequest = (req, res, next) => {
 	}
 };
 
-server.get("/docs/search-index.json", (_req, res) => {
+app.get("/docs/search-index.json", (_req, res) => {
 	res.json(getDocSearchIndex());
 });
 
-server.get("/docs", handleDocsRequest);
-server.get("/docs/*all", handleDocsRequest);
+app.get("/docs", handleDocsRequest);
+app.get("/docs/*all", handleDocsRequest);
 
-server.listen(port, () => {
-	console.log(`Server is running on port ${port}`);
+app.listen(port, () => {
+	console.log(`app is running on port ${port}`);
 });
 
-export default server;
+export default app;
