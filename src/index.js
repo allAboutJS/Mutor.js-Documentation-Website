@@ -1,4 +1,3 @@
-import minifier from "@minify-html/node";
 import "dotenv/config";
 import express from "express";
 import Mutor from "mutorjs/server";
@@ -23,14 +22,6 @@ await engine.addLayoutsInDir("views");
 
 const app = express();
 const port = process.env.PORT || 3000;
-
-const minifyHtml = (html) =>
-	minifier
-		.minify(Buffer.from(html, "utf-8"), {
-			keep_comments: false,
-			keep_spaces_between_attributes: false,
-		})
-		.toString("utf-8");
 
 const normalizeViewPath = (currentPath) => {
 	let viewPath = currentPath;
@@ -63,14 +54,14 @@ app.use(express.static("public"));
 app.set("views", "views/pages");
 app.set("view engine", "html");
 
-app.engine("html", (viewPath, options, callback) => {
+app.engine("html", async (viewPath, options, callback) => {
 	try {
 		const html = engine.renderFile(viewPath, {
 			...(options || {}),
 			mutorVersion: engine.version,
 		});
 
-		callback(null, minifyHtml(html));
+		callback(null, html);
 	} catch (error) {
 		callback(error);
 	}
@@ -92,7 +83,7 @@ const handleDocsRequest = (req, res, next) => {
 			return next();
 		}
 
-		res.send(minifyHtml(html));
+		res.send(html);
 	} catch (error) {
 		next(error);
 	}
