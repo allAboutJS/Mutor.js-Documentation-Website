@@ -108,3 +108,5 @@ server.get("/docs/*all", handleDocsRequest);
 server.listen(port, () => {
 	console.log(`Server is running on port ${port}`);
 });
+
+export default server;
