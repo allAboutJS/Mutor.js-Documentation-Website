@@ -105,8 +105,10 @@ app.get("/docs/search-index.json", (_req, res) => {
 app.get("/docs", handleDocsRequest);
 app.get("/docs/*all", handleDocsRequest);
 
-app.listen(port, () => {
-	console.log(`app is running on port ${port}`);
-});
+if (process.env.NODE_ENV !== "production") {
+	app.listen(port, () => {
+		console.log(`app is running on port ${port}`);
+	});
+}
 
 export default app;
