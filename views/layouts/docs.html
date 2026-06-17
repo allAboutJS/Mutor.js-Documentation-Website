@@ -2,7 +2,6 @@
 {{# use "root" }}
 
 {{ ::include("@/components/docs/topbar.html") }}
-{{ ::include("@/components/docs/search_modal.html") }}
 
 <div data-docs-sidebar-drawer class="fixed inset-0 z-50 hidden lg:hidden">
   <button type="button" data-docs-close-nav class="absolute inset-0 bg-black/70 backdrop-blur-sm" aria-label="Close navigation"></button>
@@ -17,7 +16,7 @@
   </aside>
 </div>
 
-<div class="mx-auto flex min-h-[calc(100vh-4rem)] max-w-[1600px]">
+<div class="mx-auto flex min-h-[calc(100vh-4rem)] max-w-400">
   <aside class="hidden w-72 shrink-0 border-r border-zinc-800 bg-[#16171b] lg:block">
     <div class="sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto px-4 py-6">
       {{ ::include("@/components/docs/sidebar.html") }}
@@ -25,7 +24,7 @@
   </aside>
 
   <main class="min-w-0 flex-1 bg-[#18191f]">
-    <div class="mx-auto flex w-full max-w-[1200px] px-4 py-8 sm:px-6 lg:px-8 xl:gap-4 xl:py-10 2xl:max-w-[1320px]">
+    <div class="mx-auto flex w-full max-w-300 px-4 py-8 sm:px-6 lg:px-8 xl:gap-4 xl:py-10 2xl:max-w-330">
       <article class="docs-prose min-w-0 max-w-none flex-1 pb-12">
         {{ if currentDoc }}
           <p class="mb-5 text-sm font-semibold text-violet-300">{{ currentDoc.group }}</p>

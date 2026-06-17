@@ -1,5 +1,5 @@
 <header class="sticky top-0 z-40 border-b border-zinc-800 bg-[#15161a]/95 backdrop-blur">
-  <div class="mx-auto flex h-16 max-w-[1600px] items-center gap-3 px-4 sm:px-6">
+  <div class="mx-auto flex h-16 max-w-400 items-center gap-3 px-4 sm:px-6">
     <div class="flex min-w-0 items-center gap-3 lg:w-72 lg:shrink-0">
       <button
         type="button"
@@ -11,7 +11,7 @@
       </button>
 
       <a href="/" class="flex min-w-0 items-center gap-2 text-zinc-100">
-        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-sm font-bold text-zinc-950">M</div>
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-100 text-xs font-bold text-zinc-950 font-mono">\{{.}}</div>
         <span class="truncate text-sm font-semibold tracking-tight">Mutor.js</span>
       </a>
     </div>
@@ -35,7 +35,7 @@
 
         <div data-docs-search-panel class="absolute inset-x-0 top-[calc(100%+0.5rem)] hidden overflow-hidden rounded-2xl border border-zinc-800 bg-[#17181d] shadow-2xl shadow-black/40">
           <p data-docs-search-status class="border-b border-zinc-800 px-4 py-3 text-xs text-zinc-500">Start typing to search the documentation.</p>
-          <div data-docs-search-results class="max-h-[24rem] overflow-y-auto p-2"></div>
+          <div data-docs-search-results class="max-h-96 overflow-y-auto p-2"></div>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ const engine = new Mutor({
 	onIncludeError(meta, err) {
 		console.log(meta, err);
 	},
-	onIncludeFail: "ignoreLog",
+	onIncludeFail: process.env.NODE_ENV === "production" ? "ignore" : "ignoreLog",
 	rootDir: "views",
 });
 
