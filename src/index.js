@@ -1,12 +1,13 @@
 import "dotenv/config";
 import * as http from "node:http";
+import { resolve } from "node:path";
 import createLynnixApp from "lynnix";
 
 let lynnixAppInstance = null;
 
 async function getApp() {
 	if (!lynnixAppInstance) {
-		lynnixAppInstance = await createLynnixApp("app", {
+		lynnixAppInstance = await createLynnixApp(resolve(process.cwd(), "./app"), {
 			allowFnCalls: true,
 			cache: { active: process.env.NODE_ENV === "production" },
 		});
