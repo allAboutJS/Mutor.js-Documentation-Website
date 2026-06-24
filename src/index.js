@@ -2,8 +2,10 @@ import "dotenv/config";
 import * as http from "node:http";
 import { resolve } from "node:path";
 import createLynnixApp from "lynnix";
+import serveStatic from "serve-static";
 
 let lynnixAppInstance = null;
+const serve = serveStatic(resolve(process.cwd(), "./public"), { index: false });
 
 async function getApp() {
 	if (!lynnixAppInstance) {
@@ -16,8 +18,6 @@ async function getApp() {
 }
 
 if (process.env.NODE_ENV !== "production") {
-	const serveStatic = (await import("serve-static")).default;
-	const serve = serveStatic("public", { index: false });
 	const app = await getApp();
 
 	const server = http.createServer((req, res) => {
@@ -32,11 +32,9 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 export default async function handler(req, res) {
-	try {
-		const app = await getApp();
+	const app = await getApp();
+
+	serve(req, res, () => {
 		app(req, res);
-	} catch (error) {
-		console.error("Initialization error:", error);
-		res.status(500).send("Internal Server Error");
-	}
+	});
 }
