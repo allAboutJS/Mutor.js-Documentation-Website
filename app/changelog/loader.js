@@ -1,4 +1,4 @@
-import { menu, toHtml } from "../docs/utils";
+import { menu, toHtml } from "../docs/utils.js";
 
 export function GET() {
   return {
