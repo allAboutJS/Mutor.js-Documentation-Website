@@ -29,109 +29,6 @@
 	.neon-btn {
 		@apply bg-blue-600 font-medium px-6 py-2 transition-all duration-300 hover:bg-blue-500 hover:shadow-[0_0_15px_rgba(37,99,235,0.5)];
 	}
-
-	.doc-card {
-		@apply bg-white/2 border border-white/5 backdrop-blur-sm p-8 transition-all duration-300;
-	}
-
-	.doc-card:hover {
-		@apply bg-white/4 border-blue-500/30;
-	}
-
-	.code-block {
-		@apply bg-black/40 border border-white/5 p-4 rounded-none font-mono overflow-x-auto text-blue-300;
-	}
-
-	.docs-prose {
-		@apply max-w-3xl text-[15px] leading-7 text-zinc-300 sm:text-base;
-	}
-
-	.docs-prose h1 {
-		@apply mb-6 text-4xl font-semibold tracking-tight text-[#faf7ef] sm:text-5xl;
-	}
-
-	.docs-prose h2 {
-		@apply mt-14 mb-4 scroll-mt-24 text-2xl font-semibold tracking-tight text-[#f4f4f5];
-	}
-
-	.docs-prose h3 {
-		@apply mt-10 mb-3 scroll-mt-24 text-xl font-semibold text-[#f4f4f5];
-	}
-
-	.docs-prose p,
-	.docs-prose ul,
-	.docs-prose ol,
-	.docs-prose blockquote,
-	.docs-prose pre,
-	.docs-prose table {
-		@apply my-5;
-	}
-
-	.docs-prose p,
-	.docs-prose ul,
-	.docs-prose ol,
-	.docs-prose blockquote,
-	.docs-prose table {
-		@apply max-w-3xl;
-	}
-
-	.docs-prose ul,
-	.docs-prose ol {
-		@apply pl-6;
-	}
-
-	.docs-prose ul {
-		@apply list-disc;
-	}
-
-	.docs-prose ol {
-		@apply list-decimal;
-	}
-
-	.docs-prose li {
-		@apply my-2;
-	}
-
-	.docs-prose a {
-		@apply text-violet-300 underline decoration-violet-400/30 underline-offset-4 transition-colors hover:text-violet-200;
-	}
-
-	.docs-prose strong {
-		@apply font-semibold text-zinc-100;
-	}
-
-	.docs-prose hr {
-		@apply my-12 border-zinc-800;
-	}
-
-	.docs-prose blockquote {
-		@apply border-l border-violet-400/60 pl-4 text-zinc-400;
-	}
-
-	.docs-prose :not(pre) > code {
-		@apply rounded-md border border-zinc-800 bg-zinc-900 px-1.5 py-0.5 not-italic text-[0.95em] text-zinc-100;
-	}
-
-	.docs-prose pre {
-		@apply overflow-x-auto rounded-2xl border border-zinc-800 bg-[#131419] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)];
-	}
-
-	.docs-prose pre code {
-		@apply bg-transparent p-0 text-sm text-zinc-100;
-	}
-
-	.docs-prose table {
-		@apply w-full border-collapse overflow-hidden rounded-2xl border border-zinc-800 text-left text-sm;
-	}
-
-	.docs-prose thead {
-		@apply bg-zinc-900/70;
-	}
-
-	.docs-prose th,
-	.docs-prose td {
-		@apply border border-zinc-800 px-3 py-2 align-top;
-	}
 }
 
 .container {
@@ -139,11 +36,7 @@
 }
 
 code {
-	@apply italic font-mono!;
-}
-
-pre code {
-	@apply not-italic text-sm;
+	@apply font-mono!;
 }
 
 pre {
@@ -175,4 +68,99 @@ pre {
 * {
 	scrollbar-color: #27272a #09090b;
 	scrollbar-width: thin;
+}
+
+.article {
+  @apply max-w-4xl text-[15px] leading-7 text-zinc-300;
+}
+
+/* Headings */
+.article h1 {
+  @apply text-2xl font-semibold text-white mb-6 tracking-tight;
+}
+
+.article h2 {
+  @apply text-lg font-semibold text-white mt-12 mb-4 tracking-tight;
+}
+
+.article h3 {
+  @apply text-base font-semibold text-white mt-8 mb-3;
+}
+
+/* Paragraphs */
+.article p {
+  @apply mb-5 text-zinc-300;
+}
+
+/* Inline code */
+.article code {
+  @apply text-[13px] font-mono bg-zinc-800 text-emerald-400 px-1.5 py-0.5 rounded;
+}
+
+/* Code blocks */
+.article pre {
+  @apply bg-zinc-900 border border-zinc-800 rounded-lg px-5 py-4 mb-6! overflow-x-auto;
+}
+
+.article pre code {
+  @apply bg-transparent text-zinc-200 p-0 text-[13px] leading-6;
+}
+
+/* Links */
+.article a {
+  @apply text-indigo-400 underline underline-offset-2 hover:text-indigo-300 transition-colors;
+}
+
+/* Lists */
+.article ul {
+  @apply list-disc list-outside pl-5 mb-5 space-y-1.5;
+}
+
+.article ol {
+  @apply list-decimal list-outside pl-5 mb-5 space-y-1.5;
+}
+
+.article li {
+  @apply text-zinc-300;
+}
+
+/* Horizontal rule */
+.article hr {
+  @apply border-zinc-800 my-10;
+}
+
+/* Blockquote */
+.article blockquote {
+  @apply border-l-2 border-zinc-700 pl-4 text-zinc-400 italic my-6;
+}
+
+/* Tables */
+.article table {
+  @apply w-full text-sm border-collapse mb-6;
+}
+
+.article thead {
+  @apply border-b border-zinc-700;
+}
+
+.article th {
+  @apply text-left text-zinc-400 font-medium py-2 pr-6;
+}
+
+.article td {
+  @apply py-2 pr-6 text-zinc-300 border-b border-zinc-800/60;
+}
+
+.article td code,
+.article th code {
+  @apply text-[12px];
+}
+
+/* Strong and em */
+.article strong {
+  @apply font-semibold text-zinc-100;
+}
+
+.article em {
+  @apply italic text-zinc-300;
 }

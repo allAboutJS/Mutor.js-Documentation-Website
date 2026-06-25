@@ -21,10 +21,6 @@
       </p>
 
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href="/docs/getting-started" class="inline-flex items-center gap-2 rounded-xl bg-violet-500 px-5 py-3 text-sm font-medium text-white transition hover:bg-violet-400">
-          Get started
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
         <a href="/docs" class="inline-flex items-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900 px-5 py-3 text-sm font-medium text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-800">
           Explore docs
         </a>
@@ -49,7 +45,7 @@
       </div>
     </div>
 
-    <div class="space-y-4">
+    <div class="max-w-full overflow-hidden space-y-4">
       <div class="overflow-hidden rounded-3xl border border-zinc-800 bg-[#16171d] shadow-[0_20px_80px_rgba(0,0,0,0.45)]">
         <div class="flex items-center justify-between border-b border-zinc-800 px-4 py-3">
           <div class="flex items-center gap-2">
@@ -61,10 +57,10 @@
           <span class="rounded-lg border border-zinc-800 bg-zinc-900 px-2 py-1 text-[11px] uppercase tracking-[0.18em] text-zinc-500">Mutor</span>
         </div>
 
-        <pre class="p-0"><code class="language-html">\{{# use "shell" }}
+        <div class="overflow-x-auto">
+          <pre><code class="language-html">\{{# use "shell" }}
 &lt;section class=&quot;dashboard&quot;&gt;
   &lt;h1&gt;\{{ user.name }}&lt;/h1&gt;
-
   \{{ if user.admin }}
     &lt;span class=&quot;badge&quot;&gt;Admin&lt;/span&gt;
   \{{ endif }}
@@ -75,6 +71,7 @@
     \{{ endfor }}
   &lt;/ul&gt;
 &lt;/section&gt;</code></pre>
+        </div>
       </div>
 
       <div class="grid gap-3 sm:grid-cols-3">
