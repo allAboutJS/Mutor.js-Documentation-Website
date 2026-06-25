@@ -1,6 +1,6 @@
 # Configuration
 
-All configuration is passed to the constructor. Every option is optional — instantiating with no arguments gives you sensible defaults.
+All configuration is passed to the constructor. Every option is optional, instantiating with no arguments gives you sensible defaults.
 
 ```javascript
 const mutor = new Mutor({
@@ -51,7 +51,7 @@ Controls whether interpolated values are HTML-escaped before being written to ou
 const mutor = new Mutor({ autoEscape: false });
 ```
 
-Leave this on unless you have a specific reason to disable it — such as rendering plain text output where HTML entities would be incorrect. When `autoEscape` is off and you need to escape a specific value, use `HTML::escape` explicitly.
+Leave this on unless you have a specific reason to disable it, such as rendering plain text output where HTML entities would be incorrect. When `autoEscape` is off and you need to escape a specific value, use `HTML::escape` explicitly.
 
 ---
 
@@ -71,7 +71,7 @@ When `false`, calling a context function throws at render time:
 \{{ user.getFullName() }} \{{# throws if allowFnCalls is false }}
 ```
 
-Namespace calls — `Math::round`, `Array::range`, and so on — are always permitted regardless of this setting. `allowFnCalls` only governs functions on the context object.
+Namespace calls like `Math::round`, `Array::range`, and so on, are always permitted regardless of this setting. `allowFnCalls` only governs functions on the context object. However function calls like `Math::round().toLocaleString()` will throw because of the extra function call of `toLocaleString`.
 
 Enable this only when you control the context entirely. In environments where the context contains user-supplied data, leaving this off prevents templates from invoking methods on untrusted values.
 
@@ -83,9 +83,9 @@ Enable this only when you control the context entirely. In environments where th
 
 Controls whether the escape marker is kept in the output when a tag is escaped with `\ {{~}}\{{`.
 
-With the default (`false`), `\ {{~}}\{{ name }}` renders as `\{{ name }}` — the backslash is stripped.
+With the default (`false`), `\ {{~}}\{{ name }}` renders as `\{{ name }}`, the backslash is stripped.
 
-With `preserveEscapeDelimiter: true`, it renders as `\ {{~}}\{{ name }}` — the backslash is preserved.
+With `preserveEscapeDelimiter: true`, it renders as `\ {{~}}\{{ name }}`, the backslash is preserved.
 
 ```javascript
 const mutor = new Mutor({ preserveEscapeDelimiter: true });
@@ -99,7 +99,7 @@ This is useful when the output itself will be processed by another tool that nee
 
 **Type:** `boolean` — **Default:** `false`
 
-When enabled, runtime errors in expression outputs are wrapped with source context — the template line and column where the failure occurred.
+When enabled, runtime errors in expression outputs are wrapped with source context, the template line and column where the failure occurred.
 
 ```javascript
 const mutor = new Mutor({ debugRuntimeErrors: true });
@@ -187,7 +187,7 @@ The string that closes a template expression.
 
 ### `delimiters.openingTagEscape`
 
-**Default:** `"\\"`
+**Default:** `"\"`
 
 The character that escapes an opening tag, preventing it from being evaluated. The escape marker is stripped from the output unless `preserveEscapeDelimiter` is enabled.
 

@@ -3,21 +3,21 @@ import { menu, toHtml } from "../utils.js";
 export function GET() {
   return {
     seo: {
-      title: "Configuration | Mutor.js Docs",
+      title: "CLI Reference | Mutor.js Docs",
       description: "",
       image: ""
     },
     menu,
     toHtml,
-    pathname: "/docs/configuration",
+    pathname: "/docs/cli",
     pager: {
       prev: {
-        title: "Namespaces",
-        path: "/docs/namespaces"
-      },
-      next: {
         title: "API Reference",
         path: "/docs/api"
+      },
+      next: {
+        title: "Security",
+        path: "/docs/security"
       }
     }
   }

@@ -11,9 +11,9 @@ export const menu = [
   { title: "Namespaces", path: "/docs/namespaces" },
   { title: "Configuration", path: "/docs/configuration" },
   { title: "API Reference", path: "/docs/api" },
-  { title: "CLI", path: "/docs/cli" },
+  { title: "CLI Reference", path: "/docs/cli" },
   { title: "Security", path: "/docs/security" },
-  { title: "Usage", path: "/docs/usage" },
+  // { title: "Usage", path: "/docs/usage" },
 ]
 
 export const toHtml = (path, src) => {
