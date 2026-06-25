@@ -548,6 +548,11 @@ magic-string@^0.30.21:
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.5.5"
 
+markdown-it-anchor@^9.2.0:
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/markdown-it-anchor/-/markdown-it-anchor-9.2.0.tgz#89375d9a2a79336403ab7c4fd36b1965cc45e5c8"
+  integrity sha512-sa2ErMQ6kKOA4l31gLGYliFQrMKkqSO0ZJgGhDHKijPf0pNFM9vghjAh3gn26pS4JDRs7Iwa9S36gxm3vgZTzg==
+
 markdown-it@^14.2.0:
   version "14.2.0"
   resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-14.2.0.tgz#06d48d9035e77d5b1c85adb315482fc8240289ef"

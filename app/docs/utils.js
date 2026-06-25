@@ -1,7 +1,6 @@
 import MarkdownIt from "markdown-it";
 
 const markdown = new MarkdownIt({ html: true });
-// const htmlMap = new Map();
 
 export const menu = [
   { title: "Getting Started", path: "/docs" },
@@ -16,13 +15,7 @@ export const menu = [
   // { title: "Usage", path: "/docs/usage" },
 ]
 
-export const toHtml = (path, src) => {
-  // if (htmlMap.has(path)) {
-  //   return htmlMap.get(path);
-  // }
-
+export const toHtml = (src) => {
   const transformed = markdown.render(src);
-
-  // htmlMap.set(path, transformed);
   return transformed
 }

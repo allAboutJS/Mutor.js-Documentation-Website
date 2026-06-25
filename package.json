@@ -4,6 +4,7 @@
 		"dotenv": "^17.4.2",
 		"lynnix": "^0.0.1",
 		"markdown-it": "^14.2.0",
+		"markdown-it-anchor": "^9.2.0",
 		"serve-static": "^2.2.1"
 	},
 	"description": "The official documentation website for Mutor.js",
