@@ -8,7 +8,7 @@ export const menu = [
   { title: "Template Syntax", path: "/docs/syntax" },
   { title: "Components & Layouts", path: "/docs/components-layouts" },
   { title: "Server Rendering", path: "/docs/server-rendering" },
-  { title: "Namespaces", path: "/docs/namesapces" },
+  { title: "Namespaces", path: "/docs/namespaces" },
   { title: "Configuration", path: "/docs/configuration" },
   { title: "API Reference", path: "/docs/api" },
   { title: "CLI", path: "/docs/cli" },
