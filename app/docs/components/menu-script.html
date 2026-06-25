@@ -17,6 +17,6 @@ function toggleMenu() {
   overlay.classList.toggle("hidden");
 }
 
-menuLinks.forEach(el => el.addEventListener("click", toggleMenu));
+menuLinks.forEach(el => void el.addEventListener("click", toggleMenu));
 menuBtn.addEventListener("click", toggleMenu);
 </script>
